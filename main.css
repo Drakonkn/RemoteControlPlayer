@@ -1,0 +1,40 @@
+.song_element {
+	color: red;
+	cursor: pointer;
+	background: yellow;
+	font-weight: bold;
+	margin: 2px;
+	padding: 5px;
+	width: 40%;
+}
+
+.song_element_active {
+	color: red;
+	cursor: pointer;
+	background: #000;
+	font-weight: bold;
+	margin: 2px;
+	padding: 5px;
+	width: 40%;
+}
+.button {
+	width: 100px;
+	height: 50px;
+	background: #E88;
+	text-align: center;
+	display:table-cell;
+	vertical-align:middle;
+	cursor: pointer;
+	border-right: #CCC 1px solid;
+	border-bottom: #CCC 1px solid;
+}
+
+.button:hover {
+	background: #FF9999;
+}
+
+.button:active {
+	background: #B55;
+	border-right: #444 1px solid;
+	border-bottom: #444 1px solid;
+}
