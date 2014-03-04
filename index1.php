@@ -1,15 +1,21 @@
-<script type="text/JavaScript" src="Oauth.js"></script>
+<!DOCTYPE html>
+<html>
+ <head>
+ 	<meta charset="utf-8">
+	<script type="text/JavaScript" src="Oauth.js"></script>
+</head>
+<body>
 <?php
 	ini_set('display_errors','On');
 	if($_GET['code']){
 		$token = get_token();
-		 $url = "https://api.vk.com/method/friends.get?timestamp=".time()."&random=".time()."&access_token=".$token;
+		 $url = "https://api.vk.com/method/friends.get?timestamp=".time()."&fields=uid,first_name,last_name,nickname,sex,bdate&random=".time()."&access_token=".$token;
 		 $res = sendGet($url);
 		 $JsonRes = json_decode($res);
 		 $songs =  $JsonRes->response;
 		 foreach ($songs as $key => $song) {
 		 	//echo "<p>".$key."   ".$song->url."</p>";
-		 	echo "<p>".$key."   ".$song."</p>";
+		 	echo "<p>".$key."   ".$song->first_name.$song->sex."</p>";
 		 }
 	}
 	else{
@@ -55,3 +61,5 @@
 ?>
 
 
+</body>
+</html>
