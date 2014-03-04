@@ -1,7 +1,7 @@
 var songs_cash;
   var played_song;
       function update_song1 () {
-          $.getJSON('http://localhost/index.php',function( data ) {
+          $.getJSON('http://localhost/getAudioFiles.php',function( data ) {
           if (JSON.stringify(songs_cash) != JSON.stringify(data)){
             var song_list = document.getElementById('song_list');
             song_list.innerHTML = '';
@@ -87,7 +87,7 @@ var songs_cash;
 
 window.onload = function(){ 
         setInterval(function update_song () {
-          $.getJSON('http://localhost/index.php',function( data ) {
+          $.getJSON('http://localhost/getAudioFiles.php',function( data ) {
           if (JSON.stringify(songs_cash) != JSON.stringify(data)){
             songs_cash = data;
             var song_list = document.getElementById('song_list');
