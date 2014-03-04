@@ -7,20 +7,20 @@
 <body>
 <?php
 	ini_set('display_errors','On');
-	if($_GET['code']){
+	if(isset($_GET['code'])){
 		$token = get_token();
-		 $url = "https://api.vk.com/method/friends.get?timestamp=".time()."&fields=uid,first_name,last_name,nickname,sex,bdate&random=".time()."&access_token=".$token;
+		 $url = "https://api.vk.com/method/audio.get?access_token=".$token;
 		 $res = sendGet($url);
 		 $JsonRes = json_decode($res);
 		 $songs =  $JsonRes->response;
 		 foreach ($songs as $key => $song) {
-		 	//echo "<p>".$key."   ".$song->url."</p>";
-		 	echo "<p>".$key."   ".$song->first_name.$song->sex."</p>";
+		 	echo "<p> ".$song->url."</p>";
 		 }
 	}
 	else{
+		
 		echo '<form>';
-		echo '<input type="button" onclick="showAuthWindows()">';
+		echo '<input type="button" value="Push" onclick="showAuthWindows()">';
 		echo '</form>';
 	}
 
@@ -43,8 +43,6 @@
 
 	function sendGet($url)
 	{
-		//$url = "https://oauth.vk.com/access_token?client_id=4223386&client_secret=5MuEECzclzE8HV0a2aRs&code=".$_GET['code']."&redirect_uri=http://localhost/index1.php&";
-		// use key 'http' even if you send the request to https://...
 		$options = array(
 		    'http' => array(
 		        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
