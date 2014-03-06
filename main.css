@@ -42,7 +42,8 @@ html body{
 #song_list{
 	padding-top: 37px;
 	background: #666;
-	width: 40%;
+	width: 60%;
+	margin:0 auto;
 }
 
 .button:active {
@@ -54,7 +55,7 @@ audio{
 	position: fixed; /* Абсолютное позиционирование */
     top: 0px; /* Положение от нижнего края */
     width: 100%;
-	background: #000;
+	background: #666;
 	padding-top: 10px;
 	height: 30px;
 }
