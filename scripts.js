@@ -1,7 +1,7 @@
 var songs_cash;
   var played_song;
       function update_song1 () {
-          $.getJSON('http://localhost/getAudioFiles.php',function( data ) {
+          $.getJSON(songGetter,function success( data ) {
           if (JSON.stringify(songs_cash) != JSON.stringify(data)){
             var song_list = document.getElementById('song_list');
             song_list.innerHTML = '';
@@ -37,7 +37,7 @@ var songs_cash;
           played_song.setAttribute('class', "song_element");
         } 
         song.setAttribute('class', "song_element_active");
-        source.src=song.path;
+        source.src=song.getAttribute("path");
         player.load();
         player.play();
         played_song = song;
@@ -86,38 +86,10 @@ var songs_cash;
     }
 
 window.onload = function(){ 
-        setInterval(function update_song () {
-          $.getJSON('http://localhost/getAudioFiles.php',function( data ) {
-          if (JSON.stringify(songs_cash) != JSON.stringify(data)){
-            songs_cash = data;
-            var song_list = document.getElementById('song_list');
-            song_list.innerHTML = '';
-            Songs_cash = data;
-            var ss;
-            var song_element;
-            var song_list;
-            for (var song in data) {
-              ss = data[song];
-              song_list = document.getElementById('song_list');
-              song_element =  document.createElement('div');
-              song_element.innerHTML = ss['name'];
-              song_element.path = ss['path'];
-              song_element.setAttribute('onclick', "play(this)");
-              if (played_song && played_song.innerHTML == ss['name'])
-                song_element.setAttribute('class', "song_element_active");
-              else
-                song_element.setAttribute('class', "song_element");
-              song_list.appendChild(song_element);
-            }
-          };
-        });
-       }, 5000);
-
-
-
         setInterval(function reqcmd(){
-        var player = document.getElementById('player');
-          $.getJSON('reqcmd.php',function( data ) {
+          var player = document.getElementById('player');
+          player.addEventListener("ended", playNext);
+          var ret = $.getJSON('reqcmd.php',function( data ) {
             for (var cmd in data){
               var command = data[cmd]['cmd'];
               switch (command){
@@ -130,7 +102,7 @@ window.onload = function(){
                 case "vol_up":
                 player.volume+=0.1;
                   break;
-                case "vol_down":
+                case "vol_dow":
                   player.volume-=0.1;
                   break;
                 case "next":
@@ -142,5 +114,6 @@ window.onload = function(){
               }
             }
       });
-    }, 2000);
+          //(ret);
+    }, 1000);
 }

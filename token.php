@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html>
- <head>
- 	<meta charset="utf-8">
-</head>
-<body>
-<?php
-	ini_set('display_errors','On');
+<?php session_start(); 
+	if (isset($_GET['ret'])){
+		$retURL = $_GET['ret'];
+		$_SESSION['ret']=$retURL;
+	}
 	if(isset($_GET['code'])){
 		$token = get_token();
-		echo "<script> top.location.href='http://localhost/test.php?access_token=".$token."'</script>";
-		doing($token);
+		$retURL = $_SESSION['ret'];
+		redirect($retURL."?access_token=".$token);
 	}
 	else{
 		get_code();
@@ -17,12 +14,13 @@
 
 	function get_code()
 	{
-		echo "<script> top.location.href='https://oauth.vk.com/authorize?client_id=4223386&scope=audio,friends,offline&redirect_uri=http://localhost/token.php&response_type=code'</script>";
+		header('Location: https://oauth.vk.com/authorize?client_id=4223386&scope=audio,friends,offline&redirect_uri=http://'.$_SERVER['HTTP_HOST'].'/token.php&response_type=code');
+		//echo "<script> top.location.href='https://oauth.vk.com/authorize?client_id=4223386&scope=audio,friends,offline&redirect_uri=http://localhost/token.php&response_type=code'</script>";
 	}
 
 	function get_token()
 	{
-		$url = "https://oauth.vk.com/access_token?client_id=4223386&client_secret=5MuEECzclzE8HV0a2aRs&code=".$_GET['code']."&redirect_uri=http://localhost/token.php";
+		$url = "https://oauth.vk.com/access_token?client_id=4223386&client_secret=5MuEECzclzE8HV0a2aRs&code=".$_GET['code']."&redirect_uri=http://".$_SERVER['HTTP_HOST']."/token.php";
 		$JsonRes = json_decode(file_get_contents($url));
 		return $JsonRes->access_token;
 	}
@@ -44,8 +42,8 @@
 		$JsonRes = json_decode($result);
 		return $result;
 	}
+
+	function redirect($url){
+		header('Location: '.$url);
+	}
 ?>
-
-
-</body>
-</html>
