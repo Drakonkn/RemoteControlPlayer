@@ -5,23 +5,28 @@ html body{
     margin: 0;
 }
 
-
+body {
+	background: #222;
+}
 .song_element {
 	color: #AAA;
-	cursor: pointer;
 	background: #444;
-	font-weight: bold;
+}
+
+.song_element_active, .song_element{
+	border: #555555 solid 2px;
+	cursor: pointer;
+	border-radius: 7px;
 	margin: 2px;
 	padding: 10px;
+	font-weight: bold;
 }
 
 .song_element_active {
-	color: #FFF;
-	cursor: pointer;
-	background: #222;
-	font-weight: bold;
-	margin: 2px;
-	padding: 10px;
+	border: #AAA solid 2px;
+	color: #CCC;
+	background: #333;
+
 }
 .button {
 	width: 100px;
@@ -40,8 +45,7 @@ html body{
 }
 
 #song_list{
-	padding-top: 37px;
-	background: #666;
+	padding-top: 40px;
 	width: 60%;
 	margin:0 auto;
 }
