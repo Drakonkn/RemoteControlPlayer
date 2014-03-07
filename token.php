@@ -22,7 +22,7 @@
 	{
 		$url = "https://oauth.vk.com/access_token?client_id=4223386&client_secret=5MuEECzclzE8HV0a2aRs&code=".$_GET['code']."&redirect_uri=http://".$_SERVER['HTTP_HOST']."/token.php";
 		$JsonRes = json_decode(file_get_contents($url));
-		return $JsonRes->access_token;
+		return $JsonRes->access_token."&user_id=".$JsonRes->user_id;
 	}
 
 	function doing($token){

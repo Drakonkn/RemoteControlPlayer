@@ -1,29 +1,19 @@
 <?php
-		$link = mysql_connect('localhost', 'root', 'Drakowa');
-		mysql_select_db('command');// or die('Не удалось выбрать базу данных/n');
+	include 'db/db.php';
+	$db = new db('command',true);
+	$db->init();
 
-		// Выполняем SQL-запрос
-		$dest = 2;//$_POST['dest'];
-
-
-		$query = "SELECT cmd FROM commands WHERE isSucess=0 AND dest = '".$dest."';";
-		$result = mysql_query($query);// or die('Запрос не удался: ' . mysql_error());
-		$query = "UPDATE commands SET isSucess = 1 WHERE isSucess=0 AND dest = '".$dest."';";
-		mysql_query($query);
-		
-		while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-		    foreach ($line as $col_value) {
-		    	$entry[$line.key($col_value)] = $col_value;
-		    }
-		    $cmds[] = $line;
-		}
-
+	$devid = $_COOKIE['dev_id'];//$_POST['dest'];
+	/////////////////// FIX ME
+	$query = "SELECT cmd FROM commands WHERE isSucess=0 AND ( dest = 2 OR dest = '".$devid."');";
+	//echo $query;
+	///////////////////////////
+	$result = $db->request($query);
+	$query = "UPDATE commands SET isSucess = 1 WHERE isSucess=0 AND ( dest = 2 OR dest = '".$devid."');";
+	$db->request($query);
+	$cmds = array();
+	while ($line = $result->fetch_array(MYSQL_ASSOC)) {
+	    $cmds[] = $line;
+	}
 		echo json_encode($cmds);
-		//var_dump($cmds);
-
-		// Освобождаем память от результата
-		mysql_free_result($result);
-
-		// Закрываем соединение
-		mysql_close($link);
-		?>
+?>

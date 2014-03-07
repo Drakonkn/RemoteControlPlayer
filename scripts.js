@@ -100,10 +100,10 @@ window.onload = function(){
                   player.pause();
                   break;
                 case "vol_up":
-                player.volume+=0.1;
+                if(player.volume<0.9) player.volume+=0.1;
                   break;
                 case "vol_dow":
-                  player.volume-=0.1;
+                  if(player.volume>0.1) player.volume-=0.1;
                   break;
                 case "next":
                   playNext();
