@@ -1,0 +1,76 @@
+html body{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+	background: #222;
+}
+.song_element {
+	color: #AAA;
+	background: #444;
+}
+
+.song_element_active, .song_element{
+	border: #555555 solid 2px;
+	cursor: pointer;
+	border-radius: 7px;
+	margin: 2px;
+	padding: 10px;
+	font-weight: bold;
+}
+
+.song_element_active {
+	border: #AAA solid 2px;
+	color: #CCC;
+	background: #333;
+
+}
+.button {
+	width: 100px;
+	height: 50px;
+	background: #E88;
+	text-align: center;
+	display:table-cell;
+	vertical-align:middle;
+	cursor: pointer;
+	border-right: #CCC 1px solid;
+	border-bottom: #CCC 1px solid;
+}
+
+.button:hover {
+	background: #FF9999;
+}
+
+#song_list{
+	padding-top: 40px;
+	width: 60%;
+	margin:0 auto;
+}
+
+.button:active {
+	background: #B55;
+	border-right: #444 1px solid;
+	border-bottom: #444 1px solid;
+}
+audio{
+	position: fixed; /* Абсолютное позиционирование */
+    top: 0px; /* Положение от нижнего края */
+    width: 100%;
+	background: #666;
+	padding-top: 10px;
+	height: 30px;
+}
+
+
+#user_info{
+	height: 100px;
+}
+#user_name{
+	color: #FFF;
+}
+#user_photo{
+	float: left;
+}
