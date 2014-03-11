@@ -10,13 +10,12 @@
 </head>
 <body>
 <?php session_start();
-	if(!isset($_SESSION['uid'])){
-		$path = $_SERVER["SCRIPT_NAME"];
-		redirect("login.php?ret=".$path);
-	}
 	include "vkAPI/vk_API.php";
 	ini_set('display_errors','On');
 	$vk = vk::getInstance();
+	if(!isset($_SESSION['uid'])){
+		redirect("index.php");
+	}
 	$songs = $vk->api('audio.get');
 	echo '<div id="song_list">';
 	foreach ($songs as $key => $song) {

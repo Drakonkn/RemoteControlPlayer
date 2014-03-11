@@ -1,7 +1,6 @@
-<?php
+<?php session_start();
 	include "vkAPI/vk_API.php";
 	error_reporting(E_ALL);
-	session_start();
 	if (isset($_GET['ret']))
 		$_SESSION['ret'] = $_GET['ret'];
 	$vk = vk::getInstance();
@@ -10,6 +9,7 @@
 	}
 	else{
 		echo "error";
+		echo "ret = ".$_SESSION['ret'];
 	}
 
 	function redirect($url){

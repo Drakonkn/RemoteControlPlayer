@@ -64,13 +64,13 @@
 		<script type="text/JavaScript" src="dev_id_cheker.js"></script>
 	</head>
 	<body>
-	<div class="button" id="play" cmd="play" onclick="send(this)">play</div>
-	<div class="button" id="pause" cmd="pause" onclick="send(this)">pause</div>
-	<div class="button" id="prev" cmd="prev" onclick="send(this)">prev</div>
-	<div class="button" id="next" cmd="next" onclick="send(this)">next</div>
+	<input type="button" class="button" value="play" id="play" cmd="play" onclick="send(this)"></input>
+	<input type="button" class="button" value="pause" id="pause" cmd="pause" onclick="send(this)"></input>
+	<input type="button" class="button" value="prev" id="prev" cmd="prev" onclick="send(this)"></input>
+	<input type="button" class="button" value="next" id="next" cmd="next" onclick="send(this)"></input>
 	<br/>
-	<div class="button" id="vol_up" cmd="vol_up" onclick="send(this)">Vol_UP</div>
-	<div class="button" id="vol_dow" cmd="vol_dow" onclick="send(this)">Vol_Down</div>
+	<input type="button" class="button" value="Vol_UP" id="vol_up" cmd="vol_up" onclick="send(this)"></input>
+	<input type="button" class="button" value="Vol_Down" id="vol_dow" cmd="vol_dow" onclick="send(this)"></input>
 	<select id="devices">
 	  
 	</select>
