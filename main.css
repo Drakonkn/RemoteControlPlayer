@@ -63,3 +63,14 @@ audio{
 	padding-top: 10px;
 	height: 30px;
 }
+
+
+#user_info{
+	height: 100px;
+}
+#user_name{
+	color: #FFF;
+}
+#user_photo{
+	float: left;
+}

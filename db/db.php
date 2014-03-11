@@ -8,7 +8,7 @@ class db{
 	private $dbname;
 	private $mysqli;
 	private $result;
-	function __construct($_dbname,$_silent=false,$_host='localhost',$_login='root',$_password='Drakowa') {
+	function __construct($_silent=false,$_dbname='command',$_host='localhost',$_login='root',$_password='Drakowa') {
        $this->host = $_host;
        $this->login = $_login;
        $this->password = $_password;

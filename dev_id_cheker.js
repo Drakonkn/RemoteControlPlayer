@@ -1,39 +1,59 @@
 window.onload = function(){
 	var dev_id = getCookie('dev_id');
-	var user_id = fromPHP('user_id');
-	if (isSet(dev_id) )
-			alert("dev ID = "+dev_id);
-	else{
-		var dev_name = prompt("введите имя устройства");
-		$.post(
+	if (isSet(dev_id) ){
+			$.post(
 			'devadd.php',
 			{
-				dev_id: dev_id,
-				user_id: user_id,
-				dev_name: dev_name
+				action: 'check',
+				dev_id: dev_id
+				
 			},
-			onAjaxSuccess
+			onCheckResult
 		);
-		}
-	}
-
-function onAjaxSuccess(data){
-	var jdata = JSON.parse(data);
-	if (isSet(jdata.error)){
-		alert(jdata.error);
 	}
 	else{
-		setCookie('dev_id',jdata.dev_id);
+		add_this_device();
 	}
-
 }
 
-function fromPHP(name)
-  { 
-  	//alert(document.getElementById(name).value);
-	return document.getElementById(name).value;//.value; 
-  }
 
+function onCheckResult(data){
+	var jdata = JSON.parse(data);
+	if (!jdata.result){
+		add_this_device();
+	}
+	else{
+		alert(jdata.name)
+	}
+}
+
+function add_this_device(){
+	var dev_name
+	while (!dev_name){
+		dev_name = prompt("Название устройства");
+	}
+	$.post(
+		'devadd.php',
+		{
+			action: 'add',
+			dev_name: dev_name	
+		},
+	onAddDevice
+	);
+}
+
+
+
+function onAddDevice(data){
+	var jdata = JSON.parse(data);
+	if (jdata.result == 'sucsess'){
+		alert("Устройство успешно добавлено \n ID:"+jdata.dev_id);
+		setCookie('dev_id',jdata.dev_id);
+	}
+	else{
+		alert("error "+jdata.error_string)
+	}
+}
 
 function getCookie(name) {
   var matches = document.cookie.match(new RegExp(
@@ -43,7 +63,8 @@ function getCookie(name) {
 }
 
 function setCookie(name,value){
-	document.cookie = name+"="+value;
+	var date = new Date( new Date().getTime() + (1000 * 86400 * 365) );
+	document.cookie = name+"="+value+";path=/; expires="+date.toUTCString();
 }
 
 function isSet(v){
