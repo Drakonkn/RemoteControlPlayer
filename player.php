@@ -6,7 +6,7 @@
   	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   	<script type="text/JavaScript" src="scripts.js"></script>
   	<script type="text/JavaScript" src="dev_id_cheker.js"></script>
-
+  	<title>Music player</title>
 </head>
 <body>
 <?php session_start();
@@ -22,19 +22,14 @@
 		echo '<div onclick="play(this)" class="song_element" path="'.$song->url.'">'.$song->title.'</div>';
 	}
 
-
-	function toJS($name, $value){
-		echo "<div style='display: none;' id='".$name."'>".htmlspecialchars($value)."</div>";
-	}
-
 	function redirect($url){
 		header('Location: '.$url);
-			exit;
+		exit;
 	}
 ?>
  </div>
   <audio controls id="player">
-    <source id='src' src="" type="audio/mpeg">
+    <source id="src" src="" type="audio/mpeg">
     Тег audio не поддерживается вашим браузером. 
   </audio>
 </body>

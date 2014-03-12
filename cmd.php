@@ -14,6 +14,7 @@
 		<meta charset="utf-8">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="main.css"/>
+		<title>Remote control</title>
 		<script type="text/javascript">
 			$.post(
 			'devadd.php',
