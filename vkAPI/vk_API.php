@@ -17,6 +17,9 @@ error_reporting(E_ALL);
 	    		return;
 	    	}
 			if(!isset($_GET['code']) || isset($_SESSION['code'])){
+				unset($_SESSION['code']);
+				unset($_SESSION['token']);
+				unset($_SESSION['uid']);
 				$this->get_code();
 			}
 			else{

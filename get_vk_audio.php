@@ -5,10 +5,28 @@
 	if(!isset($_SESSION['uid'])){
 		redirect("index.php");
 	}
-	$songs = $vk->api('audio.get');
+	if (isset($_POST['origin'])){
+		$origin = $_POST['origin'];
+	}
+	else{
+		$origin = "myAudio";
+	}
+
+	switch ($origin) {
+		case "myAudio":
+			$songs = $vk->api('audio.get');
+			break;
+		case "recomends":
+			$songs = $vk->api('audio.getRecommendations');
+			break;
+		default:
+			$songs = $vk->api('audio.get');
+			break;
+	}
+	 
 	echo '<div id="song_list">';
 	foreach ($songs as $key => $song) {
-		echo '<div onclick="play(this)" class="song_element" path="'.$song->url.'">'.$song->title.'</div>';
+		echo '<div onclick="play(this)" title="'.$song->title.'" artist="'.$song->artist.'" class="song_element" path="'.$song->url.'">'.$song->artist." - ".$song->title.'</div>';
 	}
 	echo '</div>';
 

@@ -19,11 +19,13 @@ body{
 	text-align: left;
 }
 #main_head{
+	border-radius: 10px 10px 0 0;
+	position: relative;
 	text-align: center;
 	font-size: 3em;
 	color:#FFF;
 	height: 100px;
-	width: auto;
+	width: 100%;
 	background: #5c6d71;
 }
 #list_wraper{
@@ -32,7 +34,7 @@ body{
 }
 #player_wraper{
 	height: 30px;
-	margin: 0 10px;
+	margin: 0 0px;
 	background: #3e4a4c;
 	padding: 10px 0;
 }
@@ -74,7 +76,38 @@ audio{
 	float:left;
 	width:200px;
 	margin:0 0 0 -800px;
+	text-align: center;
 }
 #right_content {
 	float:left;
+}
+select{
+	margin: 20px;
+}
+
+#dev_info{
+	font-size: 15px;
+	color: #AAA;
+	position: absolute;
+	bottom: 2px;
+	left: 2px;
+}
+#audio_info{
+	font-size: 15px;
+	color: #AAA;
+	position: absolute;
+	bottom: 2px;
+	right: 2px;
+}
+select{
+	background: #666;
+	border: solid 1px #AAA;
+	color: #FFF;
+	
+}
+select:focus{
+	outline:none;
+}
+#table{
+	color: #FFF;
 }

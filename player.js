@@ -3,17 +3,29 @@ var played_song;
 addEvent(window, 'load', onWinLoad, false);
 
 function onWinLoad(){
-  $.get("get_vk_audio.php",
-    onAjaxSuccess
-  );
+  init_play_list();
   var player = document.getElementById('player');
   addEvent(player,'ended',play_next,false);
   setInterval(req_cmd, 1000);
 }
 
+function onOriginSet(spinbox){
+  init_play_list(spinbox.value);
+}
+
+function init_play_list(origin){
+  $.post("get_vk_audio.php",
+  {
+    origin: origin
+  },
+    onAjaxSuccess
+  );
+}
+
 function onAjaxSuccess(data){
   var wraper = document.getElementById('list_wraper');
-  wraper.innerHTML += data;
+  wraper.innerHTML = data;
+  played_song.setAttribute('class', "song_element_active");
 }
 
 function req_cmd(){
@@ -30,7 +42,7 @@ function req_cmd(){
           resume();
           break;
           case "pause":
-          player.pause();
+          pause();
           break;
           case "vol_up":
           if(player.volume<0.9) player.volume+=0.1;
@@ -50,14 +62,21 @@ function req_cmd(){
   }
 
 function resume(){
-  if(played_song)
+  if(played_song){
     player.play();
+    set_status('played',played_song.innerHTML);
+  }
   else{
     var song_list = document.getElementById('song_list');
     var childs = song_list.childNodes;
     play(childs[0]);
     played_song = childs[0];
   }
+}
+
+function pause(){
+  player.pause();
+  set_status('paused',played_song.innerHTML);
 }
 
 function play(song){
@@ -71,6 +90,8 @@ function play(song){
   player.load();
   player.play();
   played_song = song;
+  document.getElementById('audio_info').innerHTML = song.innerHTML;
+  set_status('played',song.innerHTML);
 }
 
 function play_next(){
@@ -81,6 +102,7 @@ function play_next(){
       if (i<childs.length-1) i++;
       else i=0;
       play(childs[i]);
+      return;
     }
   }
 }
@@ -97,7 +119,35 @@ function play_prev(){
   }
 }
 
+function set_status(status, song){
+    $.post("status.php",
+  {
+    action: 'set',
+    status: status,
+    song_name: song
+  },
+    onSetStatus
+  );
+}
 
+function onSetStatus(data){
+  var jdata = JSON.parse(data);
+  if(jdata.result != 'sucsess'){
+    alert(jdata.error_string);
+  }
+}
+
+$(document).ready(function(){
+        var HeaderTop = $('#player').offset().top;
+    
+        $(window).scroll(function(){
+                if( $(window).scrollTop() > HeaderTop ) {
+                        $('#player').css({position: 'fixed', top: '10px', right: '0px'});
+                } else {
+                        $('#player').css({position: 'relative'});
+                }
+        });
+  });
 
 
 
