@@ -27,6 +27,7 @@ body{
 	height: 100px;
 	width: 100%;
 	background: #5c6d71;
+	font-family: verdana,sans-serif;
 }
 #list_wraper{
 	background: #365f60;
@@ -91,6 +92,7 @@ select{
 	position: absolute;
 	bottom: 2px;
 	left: 2px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
 }
 #audio_info{
 	font-size: 15px;
@@ -98,12 +100,15 @@ select{
 	position: absolute;
 	bottom: 2px;
 	right: 2px;
+	max-width: 500px;
+	max-height: 2.5em;
+	overflow: hidden;
 }
 select{
 	background: #666;
 	border: solid 1px #AAA;
 	color: #FFF;
-	
+	border-radius: 5px;
 }
 select:focus{
 	outline:none;

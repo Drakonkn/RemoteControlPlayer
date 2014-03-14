@@ -4,20 +4,72 @@
 		"selected_items":
 		[
 			[
-				"padd",
-				"padding-top"
+				"fon",
+				"font-family"
 			],
 			[
-				"mar",
-				"margin"
+				"fo",
+				"font-family"
+			],
+			[
+				"o",
+				"overflow"
+			],
+			[
+				"ma",
+				"max-height"
+			],
+			[
+				"resul",
+				"result"
+			],
+			[
+				"se",
+				"set_status"
+			],
+			[
+				"add",
+				"appendChild"
 			],
 			[
 				"get",
 				"getElementById"
 			],
 			[
-				"fon",
-				"font-size"
+				"er",
+				"error"
+			],
+			[
+				"error",
+				"error_string"
+			],
+			[
+				"resu",
+				"result"
+			],
+			[
+				"status",
+				"status_update"
+			],
+			[
+				"on",
+				"onchange	Attr"
+			],
+			[
+				"op",
+				"option	Tag"
+			],
+			[
+				"unse",
+				"unset"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"mar",
+				"margin"
 			],
 			[
 				"back",
@@ -114,10 +166,6 @@
 			[
 				"Js",
 				"json_encode"
-			],
-			[
-				"add",
-				"add_devid_to_db"
 			],
 			[
 				"q",
@@ -228,10 +276,6 @@
 				"function"
 			],
 			[
-				"fo",
-				"foreach	foreach …"
-			],
-			[
 				"pro",
 				"process"
 			],
@@ -251,15 +295,26 @@
 			"file": "get_vk_audio.php",
 			"settings":
 			{
-				"buffer_size": 394,
+				"buffer_size": 756,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "player2.php",
+			"file": "devadd.php",
 			"settings":
 			{
-				"buffer_size": 955,
+				"buffer_size": 2387,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<!DOCTYPE html>\n<html>\n <head>\n 	<meta charset=\"utf-8\">\n	<link rel=\"stylesheet\" type=\"text/css\" href=\"player.css\"/>\n  	<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"></script>\n  	<script type=\"text/javascript\">\n  		</script>\n  	<script type=\"text/JavaScript\" src=\"dev_id_cheker.js\"></script>\n  	<script type=\"text/JavaScript\" src=\"player.js\"></script>\n  	<title>Music player</title>\n</head>\n<body>\n<div id=\"main_wrap\">\n	<div class=\"floating\" id=\"main_head\">\n		Аудио плеер\n		<div id=\"dev_info\">\n			no info\n		</div>\n		<div id=\"audio_info\">\n			no info\n		</div>\n	</div>\n	<div id=\"content\">\n		<div class=\"text_container_l\">\n			<div class=\"text_container_r\">\n					<div id=\"right_content\">\n						<div id=\"player_wraper\">\n							<audio controls id=\"player\">\n							  		<source id=\"src\" src=\"\" type=\"audio/mpeg\">\n							  		Тег audio не поддерживается вашим браузером. \n							</audio>\n						</div>\n							<div id=\"list_wraper\">\n								\n							</div>\n					</div>\n					<div id=\"left_content\">\n							<select id=\"devices\" onchange=\"onOriginSet(this)\">\n	  							<option selected=\"selected\" value = \"myAudio\">Мои аудиозаписи</option>\n	  							<option value = \"recomends\">Рекомендации</option>\n							</select>\n					</div>\n\n			</div>\n		</div>\n\n\n\n\n	</div>\n</div>\n</body>\n</html>",
+			"file": "player2.php",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 1321,
 				"line_ending": "Unix"
 			}
 		},
@@ -267,7 +322,7 @@
 			"file": "player.php",
 			"settings":
 			{
-				"buffer_size": 1010,
+				"buffer_size": 1321,
 				"line_ending": "Unix"
 			}
 		},
@@ -275,7 +330,7 @@
 			"file": "player.css",
 			"settings":
 			{
-				"buffer_size": 1124,
+				"buffer_size": 1701,
 				"line_ending": "Unix"
 			}
 		},
@@ -283,15 +338,12 @@
 			"file": "player.js",
 			"settings":
 			{
-				"buffer_size": 2673,
+				"buffer_size": 3816,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "var songs_cash;\nvar played_song;\naddEvent(window, 'load', winLoad, false);\n\nfunction resume(){\n  if(played_song)\n    player.play();\n  else{\n    var song_list = document.getElementById('song_list');\n    var childs = song_list.childNodes;\n    play(childs[0]);\n    played_song = childs[0];\n  }\n}\n\nfunction play(song){\n  var player = document.getElementById('player');\n  var source = document.getElementById('src');\n  if (played_song){\n    played_song.setAttribute('class', \"song_element\");\n  } \n  song.setAttribute('class', \"song_element_active\");\n  source.src=song.getAttribute(\"path\");\n  player.load();\n  player.play();\n  played_song = song;\n}\n\nfunction play_next(){\n  var song_list = document.getElementById('song_list');\n  var childs = song_list.childNodes;\n  for (var i = 0; i< childs.length; i++){\n    if(childs[i].className == 'song_element_active'){\n      if (i<childs.length-1) i++;\n      else i=0;\n      play(childs[i]);\n    }\n  }\n}\n\nfunction play_prev(){\n  var song_list = document.getElementById('song_list');\n  var childs = song_list.childNodes;\n  for (var i = 0; i< childs.length; i++){\n    if(childs[i].className == 'song_element_active'){\n      if (i==0) i = childs.length-1;\n      else i--;\n      play(childs[i]);\n    }\n  }\n}\n\nfunction req_cmd(){\n    var ret = $.getJSON('reqcmd.php',function( data ) {\n      if(data.result == 'error'){\n        alert(data.error_string);\n        window.location=\"login.php?ret=\"+window.location.pathname;\n        return;\n      }\n      for (var cmd in data){\n        var command = data[cmd]['cmd'];\n        switch (command){\n          case \"play\":\n          resume();\n          break;\n          case \"pause\":\n          player.pause();\n          break;\n          case \"vol_up\":\n          if(player.volume<0.9) player.volume+=0.1;\n          break;\n          case \"vol_dow\":\n          if(player.volume>0.1) player.volume-=0.1;\n          break;\n          case \"next\":\n          play_next();\n          break;\n          case \"prev\":\n          play_prev();\n          break;                  \n        }\n      }\n    });\n  }\n\nfunction winLoad(){ \n  var player = document.getElementById('player');\n  player.addEventListener(\"ended\", play_next);\n  setInterval(req_cmd, 1000);\n}",
 			"file": "scripts.js",
-			"file_size": 2502,
-			"file_write_time": 130390075986376712,
 			"settings":
 			{
 				"buffer_size": 2211,
@@ -299,10 +351,18 @@
 			}
 		},
 		{
-			"file": "main.css",
+			"file": "status.php",
 			"settings":
 			{
-				"buffer_size": 1363,
+				"buffer_size": 1901,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "cmd.php",
+			"settings":
+			{
+				"buffer_size": 3184,
 				"line_ending": "Unix"
 			}
 		},
@@ -310,7 +370,7 @@
 			"file": "/var/log/apache2/error.log",
 			"settings":
 			{
-				"buffer_size": 1316704,
+				"buffer_size": 1330782,
 				"line_ending": "Unix"
 			}
 		}
@@ -342,19 +402,21 @@
 	},
 	"file_history":
 	[
+		"/var/www/addcomand.php",
+		"/var/www/devadd.php",
+		"/var/www/dev_id_cheker.js",
+		"/var/www/scripts.js",
+		"/var/www/main.css",
+		"/tmp/.fr-CWDDe0/jquery-contained-sticky-scroll.js",
+		"/var/www/vkAPI/vk_API.php",
 		"/var/www/test.html",
 		"/var/www/cmd.html",
-		"/var/www/main.css",
 		"/var/www/player.php",
 		"/var/www/logout.php",
 		"/var/www/login.php",
 		"/var/www/index.php",
-		"/var/www/vkAPI/vk_API.php",
 		"/var/www/cmd.php",
-		"/var/www/devadd.php",
-		"/var/www/dev_id_cheker.js",
 		"/var/www/reqcmd.php",
-		"/var/www/addcomand.php",
 		"/var/www/db/db.php",
 		"/var/www/test.php",
 		"/var/www/production/db/db.php",
@@ -364,7 +426,6 @@
 		"/var/www/production/cmd.html",
 		"/var/www/production/addcomand.php",
 		"/var/www/production/scripts.js",
-		"/var/www/scripts.js",
 		"/var/www/getAudioFiles.php",
 		"/var/www/production/token.php",
 		"/var/www/production/reqcmd.php",
@@ -409,6 +470,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"status_update",
+			"sidebar",
 			"resume",
 			"toJS",
 			"inde",
@@ -465,6 +528,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"set_status",
 			"play_next",
 			"play_prev"
 		],
@@ -477,7 +541,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -486,15 +550,216 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 394,
+						"buffer_size": 756,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								311,
-								311
+								169,
+								169
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "devadd.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2387,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								657,
+								657
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 528.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "player2.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1321,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1134,
+								1134
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 264.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "player.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1321,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								878,
+								878
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "player.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1701,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1135,
+								1135
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1628.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "player.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3816,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1521,
+								1521
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1254.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "scripts.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2211,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1314,
+								1314
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1056.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "status.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1901,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								952,
+								952
 							]
 						],
 						"settings":
@@ -509,193 +774,49 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "player2.php",
+					"buffer": 8,
+					"file": "cmd.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 955,
+						"buffer_size": 3184,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								297,
-								297
+								421,
+								421
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "player.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1010,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								356,
-								356
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "player.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1124,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								439,
-								439
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 264.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "player.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2673,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								274,
-								274
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 66.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "scripts.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2211,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2182,
-								2182
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1452.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "main.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1363,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								316,
-								316
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": -0.0,
-						"translation.y": 214.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
+					"buffer": 9,
 					"file": "/var/log/apache2/error.log",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1316704,
+						"buffer_size": 1330782,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1314922,
-								1314922
+								1318979,
+								1318979
 							]
 						],
 						"settings":
@@ -703,7 +824,7 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 309056.0,
+						"translation.y": 312752.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 7,
