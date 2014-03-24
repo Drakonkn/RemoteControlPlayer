@@ -25,20 +25,11 @@
 		<div class="text_container_l">
 			<div class="text_container_r">
 					<div id="right_content">
-						<div id ="player_substrate">
-							<div id="player_wraper">
-								<table id = 'player_control'>
-								  <tr>
-								    <td><img src="img/prev.png" id="prev_button" onclick="play_prev()"></img></td>
-								    <td><img src="img/play.png" id="play_button" onclick="play_pause()"></img></td>
-								    <td><img src="img/next.png" id="next_button" onclick="play_next()"></img></td>
-								    <td><div id="curent_time">00:00</div></td>
-								    <td><div id="progress_bar" onclick="seek(event, this)"><div id="progress_inner"></div></div></td>
-								    <td><div id="duration">00:00</div></td>
-									<td><div id="volume">v</div></td>
-								  </tr>
-								</table>
-							</div>
+						<div id="player_wraper">
+							<audio controls id="player">
+							  		<source id="src" src="" type="audio/mpeg">
+							  		Тег audio не поддерживается вашим браузером. 
+							</audio>
 						</div>
 							<div id="list_wraper">
 								
@@ -59,9 +50,5 @@
 
 	</div>
 </div>
-<audio id="player">
-	<source id="src" src="" type="audio/mpeg">
-	Тег audio не поддерживается вашим браузером. 
-</audio>
 </body>
 </html>

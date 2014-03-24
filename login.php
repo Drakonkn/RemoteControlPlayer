@@ -5,7 +5,9 @@
 		$_SESSION['ret'] = $_GET['ret'];
 	$vk = vk::getInstance();
 	if (isset($_SESSION['ret']) && isset($_SESSION['uid'])){
-		redirect($_SESSION['ret']);
+		$ret = $_SESSION['ret'];
+		redirect($ret);
+		unset($_SESSION['ret']);
 	}
 	else{
 		echo "error";

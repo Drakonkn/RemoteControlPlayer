@@ -33,11 +33,18 @@ body{
 	background: #365f60;
 	padding-top: 10px;
 }
-#player_wraper{
-	height: 30px;
-	margin: 0 0px;
+#player_substrate{
 	background: #3e4a4c;
-	padding: 10px 0;
+	padding: 10px;
+	height: 40px;
+	
+}
+#player_wraper{
+	background: #3e4a4c;
+	position: relative;
+	color: #FFF;
+	font-size: 10pt;
+
 }
 audio{
 	margin: 0 10px;
@@ -113,6 +120,23 @@ select{
 select:focus{
 	outline:none;
 }
-#table{
-	color: #FFF;
+
+
+#progress_bar{
+	margin-left: 10px;
+	width: 300px; 
+	height: 5px;
+	background: #293233;
+	border: #acac93 solid 1px;
+}
+#progress_bar > div{
+	width: 0%;
+	height: 100%;
+	background: #019595;
+}
+td{
+	height: 100%;
+}
+table#player_control{
+	height: 100%;
 }

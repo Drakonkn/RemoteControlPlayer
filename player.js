@@ -1,12 +1,68 @@
 var songs_cash;
 var played_song;
+var playing;
 addEvent(window, 'load', onWinLoad, false);
 
 function onWinLoad(){
   init_play_list();
   var player = document.getElementById('player');
+  addEvent(player,'play',onPlay,false);
+  addEvent(player,'durationchange',onDurationchange,false);
+  addEvent(player,'pause',onPaused,false);
   addEvent(player,'ended',play_next,false);
+  addEvent(player,"timeupdate", progress,false);
   setInterval(req_cmd, 1000);
+}
+
+function onPlay(){
+  player = document.getElementById('player');
+  play_button.src = 'img/pause.png';
+}
+
+function onDurationchange(){
+  player = document.getElementById('player');
+  var duration = document.getElementById('duration');
+  var seconds = player.duration.toFixed()%60>9 ? player.duration.toFixed()%60 : '0'+player.duration.toFixed()%60;
+  var minutes = ('0'+(player.duration.toFixed(0)/60).toFixed()).slice(-2);
+  duration.innerHTML = minutes + ":" + seconds;
+}
+
+function onPaused(){
+  play_button.src = 'img/play.png';
+}
+
+function progress(data){
+  var player = document.getElementById('player');
+  var progress_bar = document.getElementById('progress_inner');
+  progress_bar.style.width = (player.currentTime.toFixed()/player.duration)*100+"%";
+  var curent_time = document.getElementById('curent_time');
+  var seconds = player.currentTime.toFixed()%60>9 ? player.currentTime.toFixed()%60 : '0'+player.currentTime.toFixed()%60;
+  var minutes = ('0'+(player.currentTime.toFixed(0)/60).toFixed()).slice(-2);
+  curent_time.innerHTML = minutes + ":" + seconds;
+
+}
+
+function getOffsetSum(elem) {
+  var top=0, left=0
+    top = top + parseFloat(elem.offsetTop)
+    left = left + parseFloat(elem.offsetLeft)
+    elem = elem.offsetParent  
+    top = top + parseFloat(elem.offsetTop)
+    left = left + parseFloat(elem.offsetLeft)     
+ return {top: Math.round(top), left: Math.round(left)}
+}
+
+function seek(event, progress_bar){
+  var prb_offset = getOffsetSum(progress_bar);
+  var clickX = (event.layerX == undefined ? event.offsetX : event.layerX) -prb_offset.left;
+  var clickY = (event.layerY == undefined ? event.offsetY : event.layerY) -prb_offset.top;
+
+
+  var player = document.getElementById('player');
+  player.currentTime = (clickX/progress_bar.clientWidth)*player.duration;
+  //lert('go to: '+ ((clickX/progress_bar.clientWidth)*100) +' x '+ ((clickY/progress_bar.clientWidth)*100));
+
+
 }
 
 function onOriginSet(spinbox){
@@ -16,15 +72,32 @@ function onOriginSet(spinbox){
 function init_play_list(origin){
   $.post("get_vk_audio.php",
   {
-    origin: origin
+    origin: origin,
+    dataType: "json"
   },
-    onAjaxSuccess
+    onAjaxSuccess,
+    "json"
   );
 }
 
-function onAjaxSuccess(data){
+function onAjaxSuccess(jdata){
+  if(jdata.result == 'error'){
+    if (jdata.command == 'redirect'){
+      redirect(jdata.url);
+    }
+    else{
+      alert(jdata.error_string);
+    }
+    
+  }
   var wraper = document.getElementById('list_wraper');
-  wraper.innerHTML = data;
+  var songs = jdata.songs;
+  var html = '<div id="song_list">';
+  for (var song in songs){
+    html +='<div onclick="play(this)" aid="'+songs[song].aid+'" artist="'+songs[song].artist+'" class="song_element" path="'+songs[song].url+'">'+songs[song].artist+" - "+songs[song].title+'</div>';
+  }
+  html += '</div>'
+  wraper.innerHTML = html;
   played_song.setAttribute('class', "song_element_active");
 }
 
@@ -79,9 +152,19 @@ function pause(){
   set_status('paused',played_song.innerHTML);
 }
 
+function play_pause(){
+  if (playing){
+    playing = false;
+    return pause();
+  }
+  resume();
+  playing = true;
+}
+
 function play(song){
   var player = document.getElementById('player');
   var source = document.getElementById('src');
+  var play_button = document.getElementById('play_button');
   if (played_song){
     played_song.setAttribute('class', "song_element");
   } 
@@ -138,13 +221,13 @@ function onSetStatus(data){
 }
 
 $(document).ready(function(){
-        var HeaderTop = $('#player').offset().top;
+        var HeaderTop = $('#player_wraper').offset().top;
     
         $(window).scroll(function(){
                 if( $(window).scrollTop() > HeaderTop ) {
-                        $('#player').css({position: 'fixed', top: '10px', right: '0px'});
+                        $('#player_wraper').css({position: 'fixed', top: '5px', right: '5px', border:'solid #FFF 1px'});
                 } else {
-                        $('#player').css({position: 'relative'});
+                        $('#player_wraper').css({position: 'relative', top: '0', top: '0', right: '0', border:'none'});
                 }
         });
   });
@@ -163,4 +246,8 @@ function addEvent(elm, evType, fn, useCapture) {
   else {
     elm['on' + evType] = fn;
   }
+}
+
+function redirect(url){
+  window.location = url;
 }
