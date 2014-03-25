@@ -29,13 +29,13 @@
 							<div id="player_wraper">
 								<table id = 'player_control'>
 								  <tr>
-								    <td><img src="img/prev.png" id="prev_button" onclick="play_prev()"></img></td>
-								    <td><img src="img/play.png" id="play_button" onclick="play_pause()"></img></td>
-								    <td><img src="img/next.png" id="next_button" onclick="play_next()"></img></td>
+								    <td onclick="play_prev()"><img src="img/prev.png" id="prev_button" ></img></td>
+								    <td onclick="play_pause()"><img src="img/play.png" id="play_button" ></img></td>
+								    <td onclick="play_next()"><img src="img/next.png" id="next_button" ></img></td>
 								    <td><div id="curent_time">00:00</div></td>
-								    <td><div id="progress_bar" onclick="seek(event, this)"><div id="progress_inner"></div></div></td>
+								    <td><div class="progress_bar" id="seek_bar" onclick="seek(event, this)"><div class="bar_inner" id="seek_inner"></div></div></td>
 								    <td><div id="duration">00:00</div></td>
-									<td><div id="volume">v</div></td>
+									<td><div class="progress_bar" id="volume_bar" onclick="volumeChange(event, this)"><div class="bar_inner" id="volume_inner"></div></div></td>
 								  </tr>
 								</table>
 							</div>

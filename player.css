@@ -122,14 +122,25 @@ select:focus{
 }
 
 
-#progress_bar{
-	margin-left: 10px;
-	width: 300px; 
-	height: 5px;
+.progress_bar{
+
 	background: #293233;
 	border: #acac93 solid 1px;
 }
-#progress_bar > div{
+#seek_bar{
+	margin-left: 10px;
+	width: 300px; 
+	height: 5px;
+}
+#volume_bar{
+	margin-left: 10px;
+	width: 70px; 
+	height: 5px;
+}
+#volume_inner{
+	width: 50%;
+}
+.progress_bar > div{
 	width: 0%;
 	height: 100%;
 	background: #019595;

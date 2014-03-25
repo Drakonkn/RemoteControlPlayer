@@ -5,18 +5,25 @@ addEvent(window, 'load', onWinLoad, false);
 
 function onWinLoad(){
   init_play_list();
+  setInterval(req_cmd, 1000);
   var player = document.getElementById('player');
   addEvent(player,'play',onPlay,false);
   addEvent(player,'durationchange',onDurationchange,false);
   addEvent(player,'pause',onPaused,false);
   addEvent(player,'ended',play_next,false);
   addEvent(player,"timeupdate", progress,false);
-  setInterval(req_cmd, 1000);
+  addEvent(player,"volumechange",onVolumechange,false);
 }
 
 function onPlay(){
   player = document.getElementById('player');
   play_button.src = 'img/pause.png';
+}
+
+function onVolumechange(event){
+  var vol = event.target.volume;
+  var progress_bar = document.getElementById('volume_inner');
+  progress_bar.style.width = (vol*100)+"%";
 }
 
 function onDurationchange(){
@@ -33,13 +40,12 @@ function onPaused(){
 
 function progress(data){
   var player = document.getElementById('player');
-  var progress_bar = document.getElementById('progress_inner');
+  var progress_bar = document.getElementById('seek_inner');
   progress_bar.style.width = (player.currentTime.toFixed()/player.duration)*100+"%";
   var curent_time = document.getElementById('curent_time');
   var seconds = player.currentTime.toFixed()%60>9 ? player.currentTime.toFixed()%60 : '0'+player.currentTime.toFixed()%60;
   var minutes = ('0'+(player.currentTime.toFixed(0)/60).toFixed()).slice(-2);
   curent_time.innerHTML = minutes + ":" + seconds;
-
 }
 
 function getOffsetSum(elem) {
@@ -52,17 +58,20 @@ function getOffsetSum(elem) {
  return {top: Math.round(top), left: Math.round(left)}
 }
 
-function seek(event, progress_bar){
-  var prb_offset = getOffsetSum(progress_bar);
+function seek(event, seek_bar){
+  var prb_offset = getOffsetSum(seek_bar);
   var clickX = (event.layerX == undefined ? event.offsetX : event.layerX) -prb_offset.left;
   var clickY = (event.layerY == undefined ? event.offsetY : event.layerY) -prb_offset.top;
-
-
   var player = document.getElementById('player');
-  player.currentTime = (clickX/progress_bar.clientWidth)*player.duration;
-  //lert('go to: '+ ((clickX/progress_bar.clientWidth)*100) +' x '+ ((clickY/progress_bar.clientWidth)*100));
+  player.currentTime = (clickX/seek_bar.clientWidth)*player.duration;
+}
 
-
+function volumeChange(event, volume_bar){
+  var prb_offset = getOffsetSum(volume_bar);
+  var clickX = (event.layerX == undefined ? event.offsetX : event.layerX) -prb_offset.left;
+  var clickY = (event.layerY == undefined ? event.offsetY : event.layerY) -prb_offset.top;
+  var player = document.getElementById('player');
+  player.volume = (clickX/volume_bar.clientWidth);
 }
 
 function onOriginSet(spinbox){
@@ -75,12 +84,12 @@ function init_play_list(origin){
     origin: origin,
     dataType: "json"
   },
-    onAjaxSuccess,
+    onMusicUpdate,
     "json"
   );
 }
 
-function onAjaxSuccess(jdata){
+function onMusicUpdate(jdata){
   if(jdata.result == 'error'){
     if (jdata.command == 'redirect'){
       redirect(jdata.url);
@@ -132,6 +141,7 @@ function req_cmd(){
         }
       }
     });
+    //alert(ret);
   }
 
 function resume(){

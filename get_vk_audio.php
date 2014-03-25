@@ -3,7 +3,8 @@
 	ini_set('display_errors','On');
 	$vk = vk::getInstance();
 	if(!isset($_SESSION['uid'])){
-		$result = array('result' => 'error' , 'command' => 'redirect', 'url' => 'index.php' );
+		echo array('result' => 'error' , 'command' => 'redirect', 'url' => 'index.php' );
+		return;
 	}
 	if (isset($_POST['origin'])){
 		$origin = $_POST['origin'];
@@ -25,5 +26,9 @@
 	 
 
 	$result = array('result' => 'sucsess' , 'songs' => $songs );
+	if (empty($result)){
+		echo array('result' => 'error' , 'command' => 'redirect', 'url' => 'index.php' );
+		return;
+	}
 	echo json_encode($result);
 ?>
