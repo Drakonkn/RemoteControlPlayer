@@ -8,7 +8,9 @@ body{
 
 	background:  #222e2e;
 }
-
+#title{
+	padding-top: 15px;
+}
 #main_wrap{
 	height: 100%;
     width: 800px;

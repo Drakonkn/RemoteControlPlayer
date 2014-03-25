@@ -13,7 +13,7 @@
 <body>
 <div id="main_wrap">
 	<div class="floating" id="main_head">
-		Аудио плеер
+		<div id="title"><img src="img/title.png"/></div>
 		<div id="dev_info">
 			no info
 		</div>

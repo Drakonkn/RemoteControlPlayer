@@ -60,7 +60,8 @@
 
 		function onComandSend(data)
 		{
-			var jdata = JSON.parse(data);
+			if (data)
+				var jdata = JSON.parse(data);
 			if (jdata.result == error){
 				alert(jdata.error_string);
 			}
