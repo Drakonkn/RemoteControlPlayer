@@ -4,6 +4,102 @@
 		"selected_items":
 		[
 			[
+				"fon",
+				"font-family"
+			],
+			[
+				"fo",
+				"font-family"
+			],
+			[
+				"o",
+				"overflow"
+			],
+			[
+				"ma",
+				"max-height"
+			],
+			[
+				"resul",
+				"result"
+			],
+			[
+				"se",
+				"set_status"
+			],
+			[
+				"add",
+				"appendChild"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"er",
+				"error"
+			],
+			[
+				"error",
+				"error_string"
+			],
+			[
+				"resu",
+				"result"
+			],
+			[
+				"status",
+				"status_update"
+			],
+			[
+				"on",
+				"onchange	Attr"
+			],
+			[
+				"op",
+				"option	Tag"
+			],
+			[
+				"unse",
+				"unset"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"bord",
+				"border-left"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"i",
+				"inline-table"
+			],
+			[
+				"err",
+				"error_log"
+			],
+			[
+				"_",
+				"_SESSION"
+			],
+			[
 				"wi",
 				"window"
 			],
@@ -64,20 +160,12 @@
 				"toJS"
 			],
 			[
-				"get",
-				"getCookie"
-			],
-			[
 				"json",
 				"json_encode"
 			],
 			[
 				"Js",
 				"json_encode"
-			],
-			[
-				"add",
-				"add_devid_to_db"
 			],
 			[
 				"q",
@@ -114,10 +202,6 @@
 			[
 				"ba",
 				"background-color"
-			],
-			[
-				"mar",
-				"margin"
 			],
 			[
 				"so",
@@ -164,10 +248,6 @@
 				"border-right"
 			],
 			[
-				"back",
-				"background-color"
-			],
-			[
 				"wid",
 				"width"
 			],
@@ -196,10 +276,6 @@
 				"function"
 			],
 			[
-				"fo",
-				"foreach	foreach …"
-			],
-			[
 				"pro",
 				"process"
 			],
@@ -215,79 +291,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "vkAPI/vk_API.php",
-			"settings":
-			{
-				"buffer_size": 2543,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "login.php",
-			"settings":
-			{
-				"buffer_size": 343,
-				"line_ending": "Unix",
-				"name": "<?php"
-			}
-		},
-		{
-			"file": "index.php",
-			"settings":
-			{
-				"buffer_size": 1151,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "scripts.js",
-			"settings":
-			{
-				"buffer_size": 2833,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "dev_id_cheker.js",
-			"settings":
-			{
-				"buffer_size": 1140,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/var/log/apache2/error.log",
-			"settings":
-			{
-				"buffer_size": 1271564,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "devadd.php",
-			"settings":
-			{
-				"buffer_size": 2419,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "cmd.html",
-			"settings":
-			{
-				"buffer_size": 1688,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "reqcmd.php",
-			"settings":
-			{
-				"buffer_size": 645,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -316,22 +319,39 @@
 	},
 	"file_history":
 	[
-		"/var/www/production/db/db.php",
-		"/var/www/addcomand.php",
+		"/var/www/get_vk_audio.php",
+		"/var/www/index.php",
+		"/var/www/login.php",
+		"/home/drakonkn/Загрузки/KG/Довгалюк Павел/LAB4.CPP",
+		"/home/drakonkn/Загрузки/KG/Довгалюк Павел/My",
+		"/home/drakonkn/Загрузки/KG/Lab1-1999/Unit3d.pas",
 		"/var/www/devadd.php",
+		"/var/www/player2.php",
+		"/var/www/player.php",
+		"/var/www/player.css",
+		"/var/log/apache2/error.log",
+		"/var/www/cmd.php",
+		"/var/www/status.php",
+		"/var/www/scripts.js",
+		"/var/www/player.js",
+		"/var/www/addcomand.php",
+		"/var/www/dev_id_cheker.js",
+		"/var/www/main.css",
+		"/tmp/.fr-CWDDe0/jquery-contained-sticky-scroll.js",
+		"/var/www/vkAPI/vk_API.php",
+		"/var/www/test.html",
 		"/var/www/cmd.html",
+		"/var/www/logout.php",
 		"/var/www/reqcmd.php",
-		"/var/www/token.php",
-		"/var/www/test.php",
 		"/var/www/db/db.php",
+		"/var/www/test.php",
+		"/var/www/production/db/db.php",
+		"/var/www/token.php",
 		"/var/www/test/te.php",
 		"/var/www/vk_API.php",
 		"/var/www/production/cmd.html",
 		"/var/www/production/addcomand.php",
 		"/var/www/production/scripts.js",
-		"/var/www/index.php",
-		"/var/www/scripts.js",
-		"/var/www/main.css",
 		"/var/www/getAudioFiles.php",
 		"/var/www/production/token.php",
 		"/var/www/production/reqcmd.php",
@@ -339,7 +359,6 @@
 		"/var/www/production/index.php",
 		"/var/www/production/dev_id_cheker.js",
 		"/var/www/production/devadd.php",
-		"/var/www/dev_id_cheker.js",
 		"/var/www/index.html",
 		"/var/www/Oauth.js",
 		"/var/www/getCode.php",
@@ -377,6 +396,17 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"RenderFacet",
+			"status_update",
+			"sidebar",
+			"resume",
+			"toJS",
+			"inde",
+			"lay_next",
+			"playNext",
+			"playPrev",
+			"inc",
+			"setCookie",
 			"onAjaxSuccess",
 			"aler",
 			"exi",
@@ -425,6 +455,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"set_status",
+			"play_next",
+			"play_prev"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -435,274 +468,14 @@
 	"groups":
 	[
 		{
-			"selected": 4,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "vkAPI/vk_API.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2543,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2325,
-								2325
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1254.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "login.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 343,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								282,
-								282
-							]
-						],
-						"settings":
-						{
-							"auto_name": "<?php",
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1151,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								437,
-								437
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 209.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "scripts.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2833,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2128,
-								2128
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "dev_id_cheker.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1140,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								778,
-								778
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/var/log/apache2/error.log",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1271564,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1252075,
-								1252075
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 258020.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "devadd.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2419,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5,
-								5
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": -0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "cmd.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1688,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								503,
-								503
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 171.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "reqcmd.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 645,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								259,
-								259
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 30.0
 	},
 	"input":
 	{
@@ -738,7 +511,7 @@
 	"project": "main.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 70.0
 	},
 	"save_all_on_build": true,
 	"select_file":

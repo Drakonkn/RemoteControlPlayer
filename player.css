@@ -1,0 +1,153 @@
+html, body{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+body{
+
+	background:  #222e2e;
+}
+
+#main_wrap{
+	height: 100%;
+    width: 800px;
+    margin:20px auto 20px auto;
+    clear: both;
+}
+.song_element, .song_element_active{
+	text-align: left;
+}
+#main_head{
+	border-radius: 10px 10px 0 0;
+	position: relative;
+	text-align: center;
+	font-size: 3em;
+	color:#FFF;
+	height: 100px;
+	width: 100%;
+	background: #5c6d71;
+	font-family: verdana,sans-serif;
+}
+#list_wraper{
+	background: #365f60;
+	padding-top: 10px;
+}
+#player_substrate{
+	background: #3e4a4c;
+	padding: 10px;
+	height: 40px;
+	
+}
+#player_wraper{
+	background: #3e4a4c;
+	position: relative;
+	color: #FFF;
+	font-size: 10pt;
+
+}
+audio{
+	margin: 0 10px;
+}
+
+.song_element {
+	background: #3e4a4c;
+}
+
+.song_element_active, .song_element{
+	color: #FFF;
+	border: #233737 solid 2px;
+	cursor: pointer;
+	border-radius: 15px;
+	margin: 3px 10px 3px 10px;
+	padding: 10px;
+	font-weight: bold;
+}
+
+.song_element_active {
+	border: #019595 solid 2px;
+	background: #3e4a4c;
+
+}
+.text_container_l {
+	margin: 20px 0 0 0;
+	width: 200px;
+	float:left;
+	background: #545454;
+}
+.text_container_r {
+	width: 600px;
+	float:left;
+	margin:0 0 0 200px;
+}
+#left_content {
+	float:left;
+	width:200px;
+	margin:0 0 0 -800px;
+	text-align: center;
+}
+#right_content {
+	float:left;
+}
+select{
+	margin: 20px;
+}
+
+#dev_info{
+	font-size: 15px;
+	color: #AAA;
+	position: absolute;
+	bottom: 2px;
+	left: 2px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#audio_info{
+	font-size: 15px;
+	color: #AAA;
+	position: absolute;
+	bottom: 2px;
+	right: 2px;
+	max-width: 500px;
+	max-height: 2.5em;
+	overflow: hidden;
+}
+select{
+	background: #666;
+	border: solid 1px #AAA;
+	color: #FFF;
+	border-radius: 5px;
+}
+select:focus{
+	outline:none;
+}
+
+
+.progress_bar{
+
+	background: #293233;
+	border: #acac93 solid 1px;
+}
+#seek_bar{
+	margin-left: 10px;
+	width: 300px; 
+	height: 5px;
+}
+#volume_bar{
+	margin-left: 10px;
+	width: 70px; 
+	height: 5px;
+}
+#volume_inner{
+	width: 50%;
+}
+.progress_bar > div{
+	width: 0%;
+	height: 100%;
+	background: #019595;
+}
+td{
+	height: 100%;
+}
+table#player_control{
+	height: 100%;
+}

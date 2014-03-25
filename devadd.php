@@ -17,8 +17,8 @@
 		case 'get':
 			echo get_dev_by_uid();
 			break;
-//		default:
-//			break;
+		default:
+			break;
 	}
 
 

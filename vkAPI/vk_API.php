@@ -17,6 +17,9 @@ error_reporting(E_ALL);
 	    		return;
 	    	}
 			if(!isset($_GET['code']) || isset($_SESSION['code'])){
+				unset($_SESSION['code']);
+				unset($_SESSION['token']);
+				unset($_SESSION['uid']);
 				$this->get_code();
 			}
 			else{
@@ -44,6 +47,13 @@ error_reporting(E_ALL);
 			}
 			$url = "https://api.vk.com/method/".$method."?".$param_string;
 			$JsonRes = json_decode($this->sendGet($url));
+			if (isset($JsonRes->error)){
+				unset($_SESSION['code']);
+				unset($_SESSION['token']);
+				unset($_SESSION['uid']);
+				$this->init();
+				return api($method, $params);
+			}
 			return $JsonRes->response;
 	    }
 
@@ -51,6 +61,12 @@ error_reporting(E_ALL);
 		{
 			$path = $_SERVER['HTTP_HOST'].$_SERVER["SCRIPT_NAME"];
 			$url = 'https://oauth.vk.com/authorize?client_id=4223386&scope=audio,friends,offline,photos&redirect_uri=http://'.$path.'&response_type=code';
+			$this->redirect($url);
+		}
+
+		public function logout(){
+			$path = $_SERVER['HTTP_HOST'].$_SERVER["SCRIPT_NAME"];
+			$url = 'https://oauth.vk.com/logout?client_id=4223386&scope=audio,friends,offline,photos&redirect_uri=http://'.$path.'&response_type=code';
 			$this->redirect($url);
 		}
 

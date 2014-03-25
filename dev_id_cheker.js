@@ -23,7 +23,7 @@ function onCheckResult(data){
 		add_this_device();
 	}
 	else{
-		alert(jdata.name)
+		document.getElementById('dev_info').innerHTML = jdata.name;
 	}
 }
 

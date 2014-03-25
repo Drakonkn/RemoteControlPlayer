@@ -1,4 +1,4 @@
-html body{
+html, body{
     height: 100%;
     width: 100%;
     padding: 0;
@@ -6,6 +6,7 @@ html body{
 }
 
 body {
+
 	background: #222;
 }
 .song_element {
@@ -14,7 +15,7 @@ body {
 }
 
 .song_element_active, .song_element{
-	border: #555555 solid 2px;
+	border: #555 solid 2px;
 	cursor: pointer;
 	border-radius: 7px;
 	margin: 2px;
@@ -29,19 +30,28 @@ body {
 
 }
 .button {
-	width: 100px;
+	border-radius: 10px;
+	margin-right: 55px;
+	margin-top: 50px;
+	width: 150px;
 	height: 50px;
-	background: #E88;
-	text-align: center;
-	display:table-cell;
-	vertical-align:middle;
+	background: #222;
+	display: inline-block;
+	color: #FFF;
 	cursor: pointer;
-	border-right: #CCC 1px solid;
-	border-bottom: #CCC 1px solid;
+	border: #FFF 2px solid;
 }
 
 .button:hover {
-	background: #FF9999;
+	background: #444;
+	border: #FFF 2px solid;
+	color: #FFF;
+
+}
+
+.button:active {
+	border: #FFF solid 2px;
+	background: #222;
 }
 
 #song_list{
@@ -50,11 +60,7 @@ body {
 	margin:0 auto;
 }
 
-.button:active {
-	background: #B55;
-	border-right: #444 1px solid;
-	border-bottom: #444 1px solid;
-}
+
 audio{
 	position: fixed; /* Абсолютное позиционирование */
     top: 0px; /* Положение от нижнего края */
@@ -64,13 +70,32 @@ audio{
 	height: 30px;
 }
 
+img{
+	margin-right: 10px;
+	border: solid 3px #FFF;
+}
 
 #user_info{
-	height: 100px;
+	border-radius: 20px;
+	margin: 50px auto;
+	padding: 50px;
+	width: 450px;
+	background: #778;
+	border: solid #AAA 2px;
 }
 #user_name{
 	color: #FFF;
+	padding: 15px;
 }
 #user_photo{
 	float: left;
+}
+#first_name, #last_name{
+	font-size: 2.4em;
+}
+
+#buttons{
+	margin: 10px auto;
+	width: 100%;
+	text-align: justify;
 }
