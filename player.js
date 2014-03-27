@@ -17,7 +17,7 @@ function onWinLoad(){
 
 function onPlay(){
   player = document.getElementById('player');
-  play_button.src = 'img/pause.png';
+  play_button.src = 'img/pause_new.png';
 }
 
 function onVolumechange(event){
@@ -35,7 +35,7 @@ function onDurationchange(){
 }
 
 function onPaused(){
-  play_button.src = 'img/play.png';
+  play_button.src = 'img/play_new.png';
 }
 
 function progress(data){
@@ -103,7 +103,7 @@ function onMusicUpdate(jdata){
   var songs = jdata.songs;
   var html = '<div id="song_list">';
   for (var song in songs){
-    html +='<div onclick="play(this)" aid="'+songs[song].aid+'" artist="'+songs[song].artist+'" class="song_element" path="'+songs[song].url+'">'+songs[song].artist+" - "+songs[song].title+'</div>';
+    html +='<div onclick="play(this)" aid="'+songs[song].aid+'" title="'+songs[song].title+'" artist="'+songs[song].artist+'" class="song_element" path="'+songs[song].url+'">'+songs[song].artist+" - "+songs[song].title+'</div>';
   }
   html += '</div>'
   wraper.innerHTML = html;
@@ -183,7 +183,11 @@ function play(song){
   player.load();
   player.play();
   played_song = song;
-  document.getElementById('audio_info').innerHTML = song.innerHTML;
+  var curent_song_title = document.getElementById('song_title');
+  curent_song_title.innerHTML = song.title.substr(0, 50);
+  curent_song_title.setAttribute('full_title',song.innerHTML);
+
+
   set_status('played',song.innerHTML);
 }
 

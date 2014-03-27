@@ -40,8 +40,10 @@ session_start();
 		else {
 			$out = array();
 			while ($dev = $sql_res->fetch_array(MYSQL_ASSOC)){;
+				//echo mb_detect_encoding($dev['status']);
 				$out[] = array('name' => $dev['name'],'status' => $dev['status'],'played_song' => $dev['played_song']);
 			}
+			//var_dump($out);
 			echo json_encode(array('result' => 'sucsess','results'=> $out ));
 		}
 
@@ -60,6 +62,7 @@ session_start();
 		
 		if (isset($_POST['status']) && isset($_POST['song_name'])){
 			$status = $_POST['status'];
+			//echo mb_detect_encoding($status);
 			$song = $_POST['song_name'];
 			//$song = iconv('utf-8', 'utf-8//IGNORE', $song);
 		}
