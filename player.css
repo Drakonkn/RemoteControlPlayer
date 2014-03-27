@@ -6,13 +6,13 @@ html, body{
 }
 body{
 
-	background:  #222e2e;
+	background:  #FFFFFF;
 }
 
 #main_wrap{
 	height: 100%;
-    width: 800px;
-    margin:20px auto 20px auto;
+    width: 850px;
+    margin:5px auto 5px auto;
     clear: both;
 }
 .song_element, .song_element_active{
@@ -26,11 +26,11 @@ body{
 	color:#FFF;
 	height: 100px;
 	width: 100%;
-	background: #5c6d71;
+	background: #3baeed;
 	font-family: verdana,sans-serif;
 }
 #list_wraper{
-	background: #365f60;
+	background: #d8ecef;
 	padding-top: 10px;
 }
 #player_substrate{
@@ -50,30 +50,27 @@ audio{
 	margin: 0 10px;
 }
 
-.song_element {
-	background: #3e4a4c;
-}
-
 .song_element_active, .song_element{
-	color: #FFF;
-	border: #233737 solid 2px;
+	color: #2876a1;
+	border: #1b506d solid 2px;
 	cursor: pointer;
 	border-radius: 15px;
 	margin: 3px 10px 3px 10px;
 	padding: 10px;
+	padding-left: 50px;
 	font-weight: bold;
 }
 
 .song_element_active {
-	border: #019595 solid 2px;
-	background: #3e4a4c;
 
+	color: #FFF;
+	background: #264e52;
+	border: #3baeed solid 2px;
 }
 .text_container_l {
-	margin: 20px 0 0 0;
+	margin: 3px 0 0 0;
 	width: 200px;
 	float:left;
-	background: #545454;
 }
 .text_container_r {
 	width: 600px;
@@ -83,11 +80,12 @@ audio{
 #left_content {
 	float:left;
 	width:200px;
-	margin:0 0 0 -800px;
+	margin:0 0 0 -850px;
 	text-align: center;
 }
 #right_content {
 	float:left;
+	width: 650px;
 }
 select{
 	margin: 20px;
@@ -95,7 +93,7 @@ select{
 
 #dev_info{
 	font-size: 15px;
-	color: #AAA;
+	color: #F5F5F5;
 	position: absolute;
 	bottom: 2px;
 	left: 2px;
@@ -103,7 +101,7 @@ select{
 }
 #audio_info{
 	font-size: 15px;
-	color: #AAA;
+	color: #F5F5F5;
 	position: absolute;
 	bottom: 2px;
 	right: 2px;
@@ -127,9 +125,11 @@ select:focus{
 	background: #293233;
 	border: #acac93 solid 1px;
 }
-#seek_bar{
+#seek_bar, #song_title{
 	margin-left: 10px;
-	width: 300px; 
+	width: 200px; 
+}
+#seek_bar{
 	height: 5px;
 }
 #volume_bar{
@@ -147,6 +147,10 @@ select:focus{
 }
 td{
 	height: 100%;
+	
+}
+.control_button{
+	vertical-align: middle;
 }
 table#player_control{
 	height: 100%;

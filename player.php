@@ -17,9 +17,6 @@
 		<div id="dev_info">
 			no info
 		</div>
-		<div id="audio_info">
-			no info
-		</div>
 	</div>
 	<div id="content">
 		<div class="text_container_l">
@@ -29,11 +26,14 @@
 							<div id="player_wraper">
 								<table id = 'player_control'>
 								  <tr>
-								    <td onclick="play_prev()"><img src="img/prev.png" id="prev_button" ></img></td>
-								    <td onclick="play_pause()"><img src="img/play.png" id="play_button" ></img></td>
-								    <td onclick="play_next()"><img src="img/next.png" id="next_button" ></img></td>
+								    <td onclick="play_prev()"><img src="img/prev_new.png" class="control_button" id="prev_button" ></img></td>
+								    <td onclick="play_pause()"><img src="img/play_new.png" class="control_button" id="play_button" ></img></td>
+								    <td onclick="play_next()"><img src="img/next_new.png" class="control_button" id="next_button" ></img></td>
 								    <td><div id="curent_time">00:00</div></td>
-								    <td><div class="progress_bar" id="seek_bar" onclick="seek(event, this)"><div class="bar_inner" id="seek_inner"></div></div></td>
+								    <td>
+								    	<div id="song_title"><br/></div>
+								    	<div class="progress_bar" id="seek_bar" onclick="seek(event, this)"><div class="bar_inner" id="seek_inner"></div></div>
+								    </td>
 								    <td><div id="duration">00:00</div></td>
 									<td><div class="progress_bar" id="volume_bar" onclick="volumeChange(event, this)"><div class="bar_inner" id="volume_inner"></div></div></td>
 								  </tr>
