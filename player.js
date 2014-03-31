@@ -2,6 +2,7 @@ var songs_cash;
 var played_song;
 var playing;
 var curent_volume = 0;
+var mooving;
 addEvent(window, 'load', onWinLoad, false);
 
 function onWinLoad(){
@@ -14,6 +15,31 @@ function onWinLoad(){
   addEvent(player,'ended',play_next,false);
   addEvent(player,"timeupdate", progress,false);
   addEvent(player,"volumechange",onVolumechange,false);
+  addEvent(document,"mousemove",onMouseMooving,false);
+  addEvent(document,"mouseup",onMouseDown,false);
+  var bars_inner = document.getElementsByClassName('progress_bar');
+  for (var i = 0;i<bars_inner.length;i++){
+    addEvent(bars_inner[i],"mousedown",onMouseDown,false);
+  }
+}
+
+function onMouseDown(event){
+  if (event.type == 'mousedown')
+    mooving = event.target;
+  else if (event.type == 'mouseup'){
+    seek(event,mooving);
+    mooving = null;
+  }
+}
+
+function onMouseMooving(event){
+  if(mooving){
+    var prb_offset = getOffsetSum(seek_bar);
+    var clickX = (event.layerX == undefined ? event.offsetX : event.layerX) -prb_offset.left;
+    var clickY = (event.layerY == undefined ? event.offsetY : event.layerY) -prb_offset.top;
+    var player = document.getElementById('player');
+    mooving.childs[0].style.width = ((clickX/seek_bar.clientWidth)*100)+"%";
+  }
 }
 
 function onPlay(){

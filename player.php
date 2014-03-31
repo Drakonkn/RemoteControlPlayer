@@ -31,10 +31,10 @@
 								    <td><div id="curent_time">00:00</div></td>
 								    <td>
 								    	<div id="song_title"><br/></div>
-								    	<div class="progress_bar" id="seek_bar" onclick="seek(event, this)"><div class="bar_inner" id="seek_inner"></div></div>
+								    	<div class="progress_bar" id="seek_bar"><div class="bar_inner" id="seek_inner"></div></div>
 								    </td>
 								    <td><div id="duration">00:00</div></td>
-									<td><div class="progress_bar" id="volume_bar" onclick="volumeChange(event, this)"><div class="bar_inner" id="volume_inner"></div></div></td>
+									<td><div class="progress_bar" id="volume_bar" ><div class="bar_inner" id="volume_inner"></div></div></td>
 									<td><div onclick="mute(this)" class="button_mute_container"><img width="36px" height="109px" src="img/mute_new.png" class="control_button" id="next_button" ></img></div></td>
 									<td><div onclick="loop(this)" class="button_container"><img width="36px" height="145px" src="img/loop_new.png" class="control_button" id="next_button" ></img></div></td>
 								  </tr>

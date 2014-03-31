@@ -123,6 +123,7 @@ select:focus{
 .progress_bar{
 	background: #293233;
 	border: #acac93 solid 1px;
+	border-radius: 2px;
 }
 #seek_bar, #song_title{
 	width: 250px; 
@@ -135,6 +136,9 @@ select:focus{
 }
 #seek_bar{
 	height: 5px;
+}
+#seek_bar:hover >div{
+	background: "#FFF";
 }
 #volume_bar{
 	margin-left: 10px;
@@ -152,6 +156,10 @@ select:focus{
 	height: 100%;
 	background: #2876a1;
 }
+.progress_bar:hover > div{
+	background: #308fc3;
+}
+
 td{
 	height: 100%;
 	padding-left: 9px;
