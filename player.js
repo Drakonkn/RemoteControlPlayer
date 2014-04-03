@@ -1,6 +1,8 @@
 var songs_cash;
 var played_song;
 var playing;
+var curent_volume = 0;
+var mooving;
 addEvent(window, 'load', onWinLoad, false);
 
 function onWinLoad(){
@@ -13,6 +15,31 @@ function onWinLoad(){
   addEvent(player,'ended',play_next,false);
   addEvent(player,"timeupdate", progress,false);
   addEvent(player,"volumechange",onVolumechange,false);
+  addEvent(document,"mousemove",onMouseMooving,false);
+  addEvent(document,"mouseup",onMouseDown,false);
+  var bars_inner = document.getElementsByClassName('progress_bar');
+  for (var i = 0;i<bars_inner.length;i++){
+    addEvent(bars_inner[i],"mousedown",onMouseDown,false);
+  }
+}
+
+function onMouseDown(event){
+  if (event.type == 'mousedown')
+    mooving = event.target;
+  else if (event.type == 'mouseup'){
+    seek(event,mooving);
+    mooving = null;
+  }
+}
+
+function onMouseMooving(event){
+  if(mooving){
+    var prb_offset = getOffsetSum(seek_bar);
+    var clickX = (event.layerX == undefined ? event.offsetX : event.layerX) -prb_offset.left;
+    var clickY = (event.layerY == undefined ? event.offsetY : event.layerY) -prb_offset.top;
+    var player = document.getElementById('player');
+    mooving.childs[0].style.width = ((clickX/seek_bar.clientWidth)*100)+"%";
+  }
 }
 
 function onPlay(){
@@ -23,7 +50,7 @@ function onPlay(){
 function onVolumechange(event){
   var vol = event.target.volume;
   var progress_bar = document.getElementById('volume_inner');
-  progress_bar.style.width = (vol*100)+"%";
+  progress_bar.style.height = (vol*100)+"%";
 }
 
 function onDurationchange(){
@@ -69,9 +96,9 @@ function seek(event, seek_bar){
 function volumeChange(event, volume_bar){
   var prb_offset = getOffsetSum(volume_bar);
   var clickX = (event.layerX == undefined ? event.offsetX : event.layerX) -prb_offset.left;
-  var clickY = (event.layerY == undefined ? event.offsetY : event.layerY) -prb_offset.top;
+  var clickY =  volume_bar.clientHeight - ((event.layerY == undefined ? event.offsetY : event.layerY) -prb_offset.top);
   var player = document.getElementById('player');
-  player.volume = (clickX/volume_bar.clientWidth);
+  player.volume = (clickY/volume_bar.clientHeight);
 }
 
 function onOriginSet(spinbox){
@@ -184,10 +211,13 @@ function play(song){
   player.play();
   played_song = song;
   var curent_song_title = document.getElementById('song_title');
-  curent_song_title.innerHTML = song.title.substr(0, 50);
+
+  curent_song_title.innerHTML = song.title;
+  if (song.title.length > 27)
+    $('#song_title').marquee({speed_coef: 4000,roll_delay: 500});
   curent_song_title.setAttribute('full_title',song.innerHTML);
 
-
+  playing = true;
   set_status('played',song.innerHTML);
 }
 
@@ -246,8 +276,6 @@ $(document).ready(function(){
         });
   });
 
-
-
 function addEvent(elm, evType, fn, useCapture) {
   if (elm.addEventListener) {
     elm.addEventListener(evType, fn, useCapture);
@@ -264,4 +292,18 @@ function addEvent(elm, evType, fn, useCapture) {
 
 function redirect(url){
   window.location = url;
+}
+
+function mute (mute_button_container) {
+  var player = document.getElementById('player');
+  if(curent_volume == 0){
+    curent_volume = player.volume;
+    player.volume = 0;
+    mute_button_container.children[0].style="margin-top:-73px;"
+  }
+  else{
+    player.volume = curent_volume;
+    curent_volume = 0;
+    mute_button_container.children[0].style="margin-top:0;"
+  }
 }

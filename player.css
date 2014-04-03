@@ -8,9 +8,7 @@ body{
 
 	background:  #FFFFFF;
 }
-#title{
-	padding-top: 15px;
-}
+
 #main_wrap{
 	height: 100%;
     width: 850px;
@@ -123,37 +121,75 @@ select:focus{
 
 
 .progress_bar{
-
 	background: #293233;
 	border: #acac93 solid 1px;
+	border-radius: 2px;
 }
 #seek_bar, #song_title{
-	margin-left: 10px;
-	width: 200px; 
+	width: 250px; 
+	height: 50%;
+}
+#song_title{
+	overflow-x: hidden;
+	padding: 0px;
+	position: relative; /*if you'd like*/
 }
 #seek_bar{
 	height: 5px;
 }
+#seek_bar:hover >div{
+	background: "#FFF";
+}
 #volume_bar{
 	margin-left: 10px;
-	width: 70px; 
-	height: 5px;
+	width: 5px; 
+	height: 35px;
+	display:table-cell;
+	vertical-align:bottom;
 }
 #volume_inner{
-	width: 50%;
+	height: 100%;
+	width: 100%;
 }
 .progress_bar > div{
 	width: 0%;
 	height: 100%;
-	background: #019595;
+	background: #2876a1;
 }
+.progress_bar:hover > div{
+	background: #308fc3;
+}
+
 td{
 	height: 100%;
-	
+	padding-left: 9px;
 }
 .control_button{
 	vertical-align: middle;
 }
 table#player_control{
 	height: 100%;
+}
+
+.button_container{
+	width:36px;
+	height:36px; /* высота видимой части (одной картинки) */
+    display:block;
+    overflow:hidden; /* чтобы нижнюю картинку не было видно */
+}
+.button_container:hover img{
+    margin-top:-36px;
+}
+.button_container:active img{
+    margin-top:-72px;
+}
+
+.button_mute_container{
+	width:36px;
+	height:36px; /* высота видимой части (одной картинки) */
+    display:block;
+    overflow:hidden; /* чтобы нижнюю картинку не было видно */
+}
+.button_mute_container:hover img{
+    margin-top:-36px;
 }

@@ -31,12 +31,9 @@ session_start();
 			return;
 		}
 		$query = "SELECT name,status,played_song FROM device WHERE owner = ".$_SESSION['uid'];
-		//echo $query;
 		$sql_res = $command_db->request($query);
-		if ($sql_res->num_rows == 0){
+		if ($sql_res->num_rows == 0)
 			echo json_encode(array('result' => 'error'));
-			return;
-		}
 		else {
 			$out = array();
 			while ($dev = $sql_res->fetch_array(MYSQL_ASSOC)){;
@@ -46,7 +43,6 @@ session_start();
 			//var_dump($out);
 			echo json_encode(array('result' => 'sucsess','results'=> $out ));
 		}
-
 	}
 
 
@@ -64,7 +60,6 @@ session_start();
 			$status = $_POST['status'];
 			//echo mb_detect_encoding($status);
 			$song = $_POST['song_name'];
-			//$song = iconv('utf-8', 'utf-8//IGNORE', $song);
 		}
 		else{
 			echo json_encode(array('result' => 'error','error_string' => 'no status or song name in post request'));
