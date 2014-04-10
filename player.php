@@ -49,6 +49,7 @@
 							<select id="devices" onchange="onOriginSet(this)">
 	  							<option selected="selected" value = "myAudio">Мои аудиозаписи</option>
 	  							<option value = "recomends">Рекомендации</option>
+	  							<option value = "yd">Yandex.Disk</option>
 							</select>
 					</div>
 

@@ -1,0 +1,2 @@
+RedirectMatch (.*)/(.*)\.mp3$ /get_yd_audio_file.php?file=$2.mp3
+RedirectMatch (.*)$ /404.php
