@@ -130,7 +130,8 @@ function onMusicUpdate(jdata){
   var songs = jdata.songs;
   var html = '<div id="song_list">';
   for (var song in songs){
-    html +='<div onclick="play(this)" aid="'+songs[song].aid+'" title="'+songs[song].title+'" artist="'+songs[song].artist+'" class="song_element" path="'+songs[song].url+'">'+songs[song].artist+" - "+songs[song].title+'</div>';
+    if(songs[song].aid != "" && (songs[song].contenttype == 'audio/mpeg' || songs[song].contenttype == undefined)) 
+      html +='<div onclick="play(this)" aid="'+songs[song].aid+'" title="'+songs[song].title+'" artist="'+songs[song].artist+'" class="song_element" path="'+songs[song].url+'">'+songs[song].artist+" - "+songs[song].title+'</div>';
   }
   html += '</div>'
   wraper.innerHTML = html;

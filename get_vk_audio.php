@@ -19,6 +19,10 @@
 		case "recomends":
 			$songs = $vk->api('audio.getRecommendations');
 			break;
+		case 'yd':
+			header("location: get_yd_audio_file.php");
+			exit;
+			break;
 		default:
 			$songs = $vk->api('audio.get');
 			break;
@@ -30,5 +34,6 @@
 		echo array('result' => 'error' , 'command' => 'redirect', 'url' => 'index.php' );
 		return;
 	}
+	Header('Content-Type: application/json');
 	echo json_encode($result);
 ?>
