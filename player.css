@@ -99,6 +99,16 @@ select{
 	left: 2px;
 	font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+#logout_button{
+	font-size: 15px;
+	color: #F5F5F5;
+	position: absolute;
+	bottom: 2px;
+	right: 5px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	cursor: pointer;
+}
 #audio_info{
 	font-size: 15px;
 	color: #F5F5F5;

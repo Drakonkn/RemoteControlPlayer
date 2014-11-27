@@ -5,30 +5,70 @@
 		echo "no action";
 		return;
 	}
-	$action = $_POST['action'];
 
+
+	function authOpenAPIMember() {
+		$session = array();
+		$member = FALSE;
+		$valid_keys = array('expire', 'mid', 'secret', 'sid', 'sig');
+		$app_cookie = $_COOKIE['vk_app_4223386'];
+		if ($app_cookie) {
+		    $session_data = explode ('&', $app_cookie, 10);
+		    foreach ($session_data as $pair) {
+			    list($key, $value) = explode('=', $pair, 2);
+			    if (empty($key) || empty($value) || !in_array($key, $valid_keys)) {
+			    	continue;
+			      }
+			    $session[$key] = $value;
+			}
+		    foreach ($valid_keys as $key) {
+		      if (!isset($session[$key])) return $member;
+		    }
+		    ksort($session);
+
+			$sign = '';
+		    foreach ($session as $key => $value) {
+		    	if ($key != 'sig') {
+		    		$sign .= ($key.'='.$value);
+		    	}
+		    }
+		    $sign .= "5MuEECzclzE8HV0a2aRs";
+		    $sign = md5($sign);
+		    if ($session['sig'] == $sign && $session['expire'] > time()) {
+		    	$member = array(
+		        'id' => intval($session['mid']),
+		        'secret' => $session['secret'],
+		        'sid' => $session['sid']
+		      );
+	    	}
+  		}
+  		return $member;
+	}
+
+$member = authOpenAPIMember();
+
+if($member !== FALSE) {
+  	$action = $_POST['action'];
 	switch ($action) {
 		case 'check':
-			echo id_is_in_db();
+			echo id_is_in_db($member);
 			break;
 		case 'add':
-			add_devid_to_db();
+			add_devid_to_db($member);
 			break;
 		case 'get':
-			echo get_dev_by_uid();
+			echo get_dev_by_uid($member);
 			break;
 		default:
 			break;
 	}
+} else {
+  	echo "no authority";
+}
 
 
-	function get_dev_by_uid(){
-		if (!isset($_SESSION['uid'])){
-			//var_dump($_SESSION);
-			echo json_encode(array('result' => 'error','error_string' => 'pleas login'));
-			return;
-		}
-		$owner_id = $_SESSION['uid'];
+	function get_dev_by_uid($member){
+		$owner_id = $member['id'];
 		$db = new db(true);
 		$db->init();
 		$query = "SELECT id,name FROM device WHERE owner='".$owner_id."'";
@@ -44,15 +84,12 @@
 		}
 	}
 
-	function id_is_in_db(){
-		if (!isset($_POST['dev_id'])){
-			echo json_encode(array('result' => 'error','error_string' => 'no dev_id'));
-			return;
-		}
+	function id_is_in_db($member){
+		$user_id = $member["id"];
 		$dev_id = $_POST['dev_id'];
 		$db = new db(true);
 		$db->init();
-		$query = "SELECT id,name,owner FROM device WHERE id='".$dev_id."'";
+		$query = "SELECT name,owner FROM device WHERE owner='".$user_id."' AND id='".$dev_id."'";
 		$res = $db->request($query);
 		if ($res->num_rows == 0)
 			return json_encode(array('result' => false));
@@ -62,40 +99,37 @@
 		}
 	}
 
-	function has_in_db($dev_id){
+	function has_in_db($dev_id, $user_id,$dev_name){
 		$db = new db(true);
 		$db->init();
-		$query = "SELECT id FROM device WHERE id='".$dev_id."'";
+		$query = "SELECT id FROM device WHERE owner='".$user_id."' AND
+		 									  id='".$dev_id."' AND 
+		 									  name='".$dev_name."'";
 		if ($db->request($query)->num_rows == 0)
 			return false;
 		else 
 			return true;
 	}
 
-	function add_devid_to_db(){
-		if (!isset($_SESSION['uid'])){
-			echo json_encode(array('result' => 'error','error_string' => 'no vk session'));
-			return;
-		}
+	function add_devid_to_db($member){
 		$dev_name = $_POST['dev_name'];
-		$user_id = $_SESSION['uid'];
-		$dev_id = dev_id();
-		if (!has_in_db($dev_id)){
-			$db = new db(true);
-			$db->init();
+		$user_id = $member['id'];
+		$dev_id = $dev_id = dev_id();
+		$db = new db(true);
+		$db->init();
+		if(!has_in_db($dev_id, $user_id,$dev_name)){
 			$query = "INSERT INTO device (owner,id,name) VALUES ('".$user_id."','".$dev_id."','".$dev_name."')";
-			$db->request($query);
-			echo json_encode(array('result' => 'sucsess','dev_id' => $dev_id));
+			if( $db->request($query)){
+				echo json_encode(array('result' => 'sucsess','dev_id' => $dev_id, 'dev_name' => $dev_name));
+			}
+			else{
+				echo json_encode(array('result' => 'error','error_string' => 'Can not add ind DB' ));
+			}
 		}
 	}
 
 	function dev_id(){
-		if (!isset($_COOKIE['dev_id'])){
-			$dev_id = md5(rand());
-		}
-		else {
-			$dev_id = $_COOKIE['dev_id'];
-		}
+		$dev_id = md5(rand()."oh7o6ri^%#E$");
 		return $dev_id;
 	}
 

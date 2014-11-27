@@ -6,9 +6,9 @@ class db{
 	private $login;
 	private $password;
 	private $dbname;
-	private $mysqli;
+	public $mysqli;
 	private $result;
-	function __construct($_silent=false,$_dbname='command',$_host='localhost',$_login='root',$_password='Drakowa') {
+	function __construct($_silent=false,$_dbname='u344320',$_host='u344320.mysql.masterhost.ru',$_login='u344320',$_password='cralisma4a6i') {
        $this->host = $_host;
        $this->login = $_login;
        $this->password = $_password;
@@ -21,11 +21,10 @@ class db{
    			if (!$this->silent) echo "Соединение установлено";
    		else
    			if (!$this->silent) echo ('Не удалось соединиться: ' . mysqli_error($this->mysqli));
-   		
    }
 
    function request($query){
-   		
+    //echo $query;
 		$this->result = $this->mysqli->query($query) or die('Запрос не удался: ' . mysqli_error($this->mysqli));
 		return $this->result;
    }

@@ -3,26 +3,82 @@ var played_song;
 var playing;
 var curent_volume = 0;
 var mooving;
+var token
 addEvent(window, 'load', onWinLoad, false);
 
 function onWinLoad(){
-  init_play_list();
-  setInterval(req_cmd, 1000);
-  var player = document.getElementById('player');
-  addEvent(player,'play',onPlay,false);
-  addEvent(player,'durationchange',onDurationchange,false);
-  addEvent(player,'pause',onPaused,false);
-  addEvent(player,'ended',play_next,false);
-  addEvent(player,"timeupdate", progress,false);
-  addEvent(player,"volumechange",onVolumechange,false);
-  addEvent(document,"mousemove",onMouseMooving,false);
-  addEvent(document,"mouseup",onMouseDown,false);
-  var bars_inner = document.getElementsByClassName('progress_bar');
-  for (var i = 0;i<bars_inner.length;i++){
-    addEvent(bars_inner[i],"mousedown",onMouseDown,false);
-  }
+	VK.init({
+	    apiId: 4223386
+	});
+    setInterval(req_cmd, 1000);
+    player_init()
+	VK.Auth.getLoginStatus(function(response){
+	    if(response.session)
+	    {
+	      init_play_list();
+	    }
+      else{
+        onNotLogin()
+      }
+	});
 }
 
+function onNotLogin(){
+    redirect("/index.php");
+}
+
+
+function send(button){
+    var cmd = button.getAttribute('cmd');
+    var devices = document.getElementById('devices');
+    var dev_id = getValue("dev_id");
+    dest_dev_id = devices[devices.selectedIndex].id;
+    $.post(
+        "addcomand.php",
+        {
+            dest: dest_dev_id,
+            cmd: cmd,
+            dev_id: dev_id
+        },
+        onComandSend
+      );
+}
+
+function onComandSend(data)
+{
+    var jdata = JSON.parse(data);
+    if (jdata.result == error){
+        alert(jdata.error_string);
+    }
+}
+
+function player_init(){
+    var player = document.getElementById('player');
+    addEvent(player,'play',onPlay,false);
+    addEvent(player,'durationchange',onDurationchange,false);
+    addEvent(player,'pause',onPaused,false);
+    addEvent(player,'ended',play_next,false);
+    addEvent(player,"timeupdate", progress,false);
+    addEvent(player,"volumechange",onVolumechange,false);
+    addEvent(document,"mousemove",onMouseMooving,false);
+    addEvent(document,"mouseup",onMouseDown,false);
+    var bars_inner = document.getElementsByClassName('progress_bar');
+    for (var i = 0;i<bars_inner.length;i++){
+        addEvent(bars_inner[i],"mousedown",onMouseDown,false);
+    }
+}
+
+function init_play_list(origin){
+	if(origin === 'recomends')
+	 var method = 'audio.getRecommendations'
+	else
+		var method = 'audio.get'
+  VK.Api.call(method, {}, function(r) {
+  if(r.response) {
+    onMusicUpdate(r)
+  }
+}); 
+}
 function onMouseDown(event){
   if (event.type == 'mousedown')
     mooving = event.target;
@@ -105,19 +161,8 @@ function onOriginSet(spinbox){
   init_play_list(spinbox.value);
 }
 
-function init_play_list(origin){
-  $.post("get_vk_audio.php",
-  {
-    origin: origin,
-    dataType: "json"
-  },
-    onMusicUpdate,
-    "json"
-  );
-}
-
 function onMusicUpdate(jdata){
-  if(jdata.result == 'error'){
+  if(jdata.error !== undefined){
     if (jdata.command == 'redirect'){
       redirect(jdata.url);
     }
@@ -127,7 +172,7 @@ function onMusicUpdate(jdata){
     
   }
   var wraper = document.getElementById('list_wraper');
-  var songs = jdata.songs;
+  var songs = jdata.response;
   var html = '<div id="song_list">';
   for (var song in songs){
     if(songs[song].aid != "" && (songs[song].contenttype == 'audio/mpeg' || songs[song].contenttype == undefined)) 
@@ -139,7 +184,8 @@ function onMusicUpdate(jdata){
 }
 
 function req_cmd(){
-    var ret = $.getJSON('reqcmd.php',function( data ) {
+  var dev_id = getValue('dev_id');
+    var ret = $.getJSON('reqcmd.php',{dev_id : dev_id},function( data ) {
       if(data.result == 'error'){
         alert(data.error_string);
         window.location="login.php?ret="+window.location.pathname;
@@ -219,12 +265,18 @@ function play(song){
   curent_song_title.setAttribute('full_title',song.innerHTML);
 
   playing = true;
-  set_status('played',song.innerHTML);
+  set_status('played',played_song.textContent);
 }
 
 function play_next(){
   var song_list = document.getElementById('song_list');
-  var childs = song_list.childNodes;
+  var childs = song_list.childNodes;(player,'durationchange',onDurationchange,false);
+  addEvent(player,'pause',onPaused,false);
+  addEvent(player,'ended',play_next,false);
+  addEvent(player,"timeupdate", progress,false);
+  addEvent(player,"volumechange",onVolumechange,false);
+  addEvent(document,"mousemove",onMouseMooving,false);
+  addEvent
   for (var i = 0; i< childs.length; i++){
     if(childs[i].className == 'song_element_active'){
       if (i<childs.length-1) i++;
@@ -248,11 +300,13 @@ function play_prev(){
 }
 
 function set_status(status, song){
+  var dev_id = getValue('dev_id');
     $.post("status.php",
   {
     action: 'set',
     status: status,
-    song_name: song
+    song_name: song,
+    dev_id: dev_id
   },
     onSetStatus
   );
@@ -307,4 +361,12 @@ function mute (mute_button_container) {
     curent_volume = 0;
     mute_button_container.children[0].style="margin-top:0;"
   }
+}
+
+function getValue(name) {
+  return localStorage[name];
+}
+
+function setValue(name,value){
+  localStorage[name] = value;
 }

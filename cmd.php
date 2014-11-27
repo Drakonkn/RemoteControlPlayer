@@ -1,12 +1,4 @@
 <?php session_start();
-	if(!isset($_SESSION['uid'])){
-		$path = $_SERVER["SCRIPT_NAME"];
-		redirect("login.php?ret=".$path);
-	}
-	function redirect($url){
-		header('Location: '.$url);
-			exit;
-	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,43 +8,36 @@
 		<link rel="stylesheet" type="text/css" href="player.css"/>
 		<title>Remote control</title>
 		<script type="text/javascript">
-			$.post(
-			'devadd.php',
-			{
-				action: 'get'
-			},
-			onGetDev);
 		var dev_status;
 		setInterval(status_update,1000);
 
 
-		function onGetDev(data){
-			var jdata = JSON.parse(data);
-			if(jdata.result == 'error'){
-				alert(jdata.error_string);
-				window.location = "login.php?ret="+window.location.pathname;
-				return;
-			}
-			var devices = document.getElementById('devices');
-			for (key in jdata){
-				var li = document.createElement('option');
-				li.id = jdata[key].id;
-				li.innerHTML = jdata[key].name;
-				devices.appendChild(li);
-			}
-			
+		function onWinLoad(){
+			VK.init({
+			    apiId: 4223386
+			});
+			VK.Auth.getLoginStatus(function(response){
+			    if(response.session)
+			    {
+			      init_play_list();
+			    }
+		      else{
+		        onNotLogin()
+		      }
+			});
 		}
-
 
 		function send(button){
 			var cmd = button.getAttribute('cmd');
 			var devices = document.getElementById('devices');
+			var dev_id = getValue("dev_id");
 			dest_dev_id = devices[devices.selectedIndex].id;
 			$.post(
 			  "addcomand.php",
 			  {
 			  	dest: dest_dev_id,
 			    cmd: cmd,
+			    dev_id: dev_id
 			  },
 			  onComandSend
 			);
@@ -96,6 +81,14 @@
 				
 				table.appendChild(row);
 			}
+		}
+
+		function getValue(name) {
+		  return localStorage[name];
+		}
+
+		function setValue(name,value){
+		  localStorage[name] = value;
 		}
 		</script>
 		<script type="text/JavaScript" src="dev_id_cheker.js"></script>

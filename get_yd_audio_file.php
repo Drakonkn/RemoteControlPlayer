@@ -49,17 +49,23 @@
 		$opts = array(
 	  			'http'=>array(
 	    			'method'=>"PROPFIND",
-	    			"header" => ["Authorization: OAuth " . $access_token,
-	        				"depth: 1"]
+	    			"header" => array(
+	    				"Authorization: OAuth ".$access_token,
+	    				"depth: 1" 
+	    			)
 	  			)
 		);
 		$context = stream_context_create($opts);
-		$result = file_get_contents($url,false,$context);
+		$f = fopen ( $url , 'r', false, $context );
+		$result = stream_get_contents($f);
+		fclose($f);
+		//$result = file_get_contents($url,false,$context);
+		//$result  = fread($f, 10000);
 		if ($http_response_header[0] == 'HTTP/1.0 207 Multi-Status'){
 			$sxml = new SimpleXMLElement($result);
 
 			$namespaces = $sxml->getNameSpaces(true);
-		 	$cb = $sxml->children($namespaces['d']);
+		 	$cb = $sxml->children("DAV:");
 		 	$files = array();
 		 	foreach ($cb->response as $response) {
 			 	$file = array(

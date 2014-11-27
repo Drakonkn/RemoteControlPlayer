@@ -7,16 +7,26 @@
   	<script type="text/JavaScript" src="js/marquee.js"></script>
   	<script type="text/JavaScript" src="dev_id_cheker.js"></script>
   	<script type="text/JavaScript" src="player.js"></script>
+  	<script src="//vk.com/js/api/openapi.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	  VK.init({
+	    apiId: 4223386
+	  });
+	</script>
   	<title>Music player</title>
 </head>
 <body>
 <div id="main_wrap">
 	<div class="floating" id="main_head">
 		Аудио плеер
-		<div id="dev_info">
-			no info
-		</div>
+		<a href="/index.php">
+			<div id="dev_info">
+				 no info
+			</div>
+		</a>
+		<div id="logout_button" onclick="VK.Auth.logout(onNotLogin)">logout</div>
 	</div>
+	
 	<div id="content">
 		<div class="text_container_l">
 			<div class="text_container_r">
@@ -25,10 +35,10 @@
 							<div id="player_wraper">
 								<table id = 'player_control'>
 								  <tr>
-								    <td ><div onclick="play_prev()" class="button_container"><img width="36px" height="145px" src="img/prev_new.png" class="control_button" id="prev_button" ></img></div></td>
-								    <td ><div onclick="play_pause()" class="button_container"><img width="36px" height="145px" src="img/play_new.png" class="control_button" id="play_button" ></img></div></td>
-								    <td ><div onclick="play_next()" class="button_container"><img width="36px" height="145px" src="img/next_new.png" class="control_button" id="next_button" ></img></div></td>
-								    <td><div id="curent_time">00:00</div></td>
+								    <td ><div cmd="prev" onclick="send(this)" class="button_container"><img width="36px" height="145px" src="img/prev_new.png" class="control_button" id="prev_button" ></img></div></td>
+								    <td ><div cmd="play" onclick="send(this)" class="button_container"><img width="36px" height="145px" src="img/play_new.png" class="control_button" id="play_button" ></img></div></td>
+								    <td ><div cmd="next" onclick="send(this)" class="button_container"><img width="36px" height="145px" src="img/next_new.png" class="control_button" id="next_button" ></img></div></td>
+								    <td> <div id="curent_time">00:00</div></td>
 								    <td>
 								    	<div id="song_title"><br/></div>
 								    	<div class="progress_bar" id="seek_bar"><div class="bar_inner" id="seek_inner"></div></div>
@@ -46,10 +56,12 @@
 							</div>
 					</div>
 					<div id="left_content">
-							<select id="devices" onchange="onOriginSet(this)">
+							<select id="origin" onchange="onOriginSet(this)">
 	  							<option selected="selected" value = "myAudio">Мои аудиозаписи</option>
 	  							<option value = "recomends">Рекомендации</option>
 	  							<option value = "yd">Yandex.Disk</option>
+							</select>
+							<select id="devices">
 							</select>
 					</div>
 

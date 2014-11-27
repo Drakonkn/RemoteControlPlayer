@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+
 	class vk{
 	    protected static $_instance;
 	    private static $access_token;
@@ -16,18 +16,18 @@ error_reporting(E_ALL);
 	    		self::$uid = $_SESSION['uid'];
 	    		return;
 	    	}
-			if(!isset($_GET['code']) || isset($_SESSION['code'])){
-				unset($_SESSION['code']);
-				unset($_SESSION['token']);
-				unset($_SESSION['uid']);
-				$this->get_code();
-			}
-			else{
-				$this->init_token_and_uid();
-				$_SESSION['code'] = $_GET['code'];
-				$_SESSION['token'] = self::$access_token;
-				$_SESSION['uid'] = self::$uid;
-			}
+		if(!isset($_GET['code']) || isset($_SESSION['code'])){
+			unset($_SESSION['code']);
+			unset($_SESSION['token']);
+			unset($_SESSION['uid']);
+			$this->get_code();
+		}
+		else{
+			$this->init_token_and_uid();
+			$_SESSION['code'] = $_GET['code'];
+			$_SESSION['token'] = self::$access_token;
+			$_SESSION['uid'] = self::$uid;
+		}
 	    }
 	 
 	    private function __clone(){
@@ -60,13 +60,13 @@ error_reporting(E_ALL);
 		private function get_code()
 		{
 			$path = $_SERVER['HTTP_HOST'].$_SERVER["SCRIPT_NAME"];
-			$url = 'https://oauth.vk.com/authorize?client_id=4223386&scope=audio,friends,offline,photos&redirect_uri=http://'.$path.'&response_type=code';
+			$url = 'https://oauth.vk.com/authorize?client_id=4223386&scope=audio,friends,photos&redirect_uri=http://'.$path.'&response_type=code';
 			$this->redirect($url);
 		}
 
 		public function logout(){
 			$path = $_SERVER['HTTP_HOST'].$_SERVER["SCRIPT_NAME"];
-			$url = 'https://oauth.vk.com/logout?client_id=4223386&scope=audio,friends,offline,photos&redirect_uri=http://'.$path.'&response_type=code';
+			$url = 'https://oauth.vk.com/logout?client_id=4223386&scope=audio,friends,photos&redirect_uri=http://'.$path.'&response_type=code';
 			$this->redirect($url);
 		}
 
